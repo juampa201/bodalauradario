@@ -9,6 +9,7 @@
   if (!intro || !seal || !invitation || !cue || !nextSection) return;
   let state = 'closed';
   let fallback;
+  let openedWithKeyboard = false;
 
   function complete() {
     if (state !== 'opening') return;
@@ -22,15 +23,16 @@
     if (welcomeSection) welcomeSection.hidden = false;
     document.body.classList.remove('is-locked');
     intro.classList.add('is-open');
-    // Move keyboard focus only when it was on the disappearing seal.
-    if (document.activeElement === seal || document.activeElement === document.body) {
+    // Transfer focus after keyboard activation; pointer activation needs no focus ring.
+    if (openedWithKeyboard && (document.activeElement === seal || document.activeElement === document.body)) {
       cue.focus({ preventScroll: true });
     }
     intro.dispatchEvent(new CustomEvent('intro:complete', { bubbles: true }));
   }
 
-  seal.addEventListener('click', () => {
+  seal.addEventListener('click', (event) => {
     if (state !== 'closed') return;
+    openedWithKeyboard = event.detail === 0;
     state = 'opening';
     seal.setAttribute('aria-expanded', 'true');
     seal.setAttribute('aria-disabled', 'true');
