@@ -5,7 +5,7 @@
 .scene { width: min(82vw, 440px, 68svh); aspect-ratio: 1.325; position: relative; transform: translateY(min(14svh, 100px)); perspective: 1400px; container-type: inline-size; }
 .envelope { width: 100%; height: 100%; position: relative; filter: drop-shadow(0 22px 22px #56412b1c); }
 .envelope-back { position: absolute; inset: 0; background: linear-gradient(135deg, #b8a083, #d4bea0 55%, #cbb293); border-radius: 3px; }
-.invitation { position: absolute; z-index: 2; width: 90%; height: 95%; bottom: 3%; left: 5%; background: linear-gradient(125deg, #fffef9, #faf5e9); box-shadow: 0 0 0 1px #8f76521a, 0 3px 15px #5d412718; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 5cqw 3cqw 0; border-radius: 2px; }
+.invitation { position: absolute; z-index: 2; width: 90%; height: 95%; bottom: 3%; left: 5%; background: linear-gradient(125deg, #fffef9, #faf5e9); box-shadow: 0 0 0 1px #8f76521a, 0 3px 15px #5d412718; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 5cqw 3cqw; border-radius: 2px; }
 .invitation::before { content: ''; position: absolute; inset: 9px; border: 1px solid #bfa17940; pointer-events: none; }
 .title-prefix { margin: 0 0 2cqw; font-size: 3.9cqw; font-style: italic; color: #8b725a; }
 .names { margin: 0; font-weight: 400; font-size: 9.5cqw; line-height: 1; letter-spacing: -.025em; }
@@ -14,8 +14,8 @@
 .fine-rule { width: 7cqw; height: 1px; flex-shrink: 0; background: #bca07e; margin: 2.7cqw 0; }
 .invitation-date { font-size: 3.7cqw; color: #715a44; white-space: nowrap; }
 .envelope-front { position: absolute; inset: 0; z-index: 4; overflow: hidden; border-radius: 0 0 3px 3px; clip-path: polygon(0 0, 50% 57%, 100% 0, 100% 100%, 0 100%); background: linear-gradient(32deg, #cbb292, #e1ceb1 56%, #dac3a4); }
-.envelope-front::before { content: ''; position: absolute; inset: 0; clip-path: polygon(0 100%, 50% 48%, 100% 100%); background: linear-gradient(180deg, #e7d6bb, #dac2a1); }
-.envelope-front::after { content: ''; position: absolute; inset: 0; background: linear-gradient(31deg, transparent 49.8%, #a18a6b30 50%, transparent 50.3%), linear-gradient(-31deg, transparent 49.8%, #a18a6b20 50%, transparent 50.3%); }
+.envelope-front::before { content: ''; position: absolute; inset: 0; clip-path: polygon(0 100%, 50% 57%, 100% 100%); background: linear-gradient(180deg, #e7d6bb, #dac2a1); }
+.envelope-front::after { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 100L50 57L100 100' fill='none' stroke='%23a18a6b' stroke-opacity='.3' stroke-width='1' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") center / 100% 100% no-repeat; }
 .envelope-flap { position: absolute; inset: 0; z-index: 5; transform-origin: top center; backface-visibility: hidden; clip-path: polygon(0 0, 100% 0, 50% 59%); background: linear-gradient(180deg, #e5d3b8, #ceb493); }
 .seal { position: absolute; z-index: 6; width: clamp(48px, 13cqw, 58px); aspect-ratio: 1; left: 50%; top: 46%; transform: translateX(-50%); display: grid; place-items: center; padding: 0; border: 0; cursor: pointer; background: radial-gradient(circle at 35% 28%, #b17b5f, #8e5b44 75%); border-radius: 49% 46% 48% 43%; box-shadow: 1px 4px 6px #62442c40, inset 0 0 0 3px #a26e52, inset 0 0 0 4px #754b3740; color: #edcfab; transition: box-shadow .25s; }
 .seal:hover { box-shadow: 1px 5px 10px #62442c55, inset 0 0 0 3px #b47c5b, inset 0 0 0 4px #754b3740; }
