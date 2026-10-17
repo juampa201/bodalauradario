@@ -1,0 +1,7 @@
+/* Edit wedding data here. +02:00 is the Madrid offset on 2 October 2027.
+   The explicit offset makes the countdown identical in every visitor's timezone. */
+window.Wedding = window.Wedding || {};
+window.Wedding.config = Object.freeze({
+  date: '2027-10-02T12:00:00+02:00',
+  timeZone: 'Europe/Madrid'
+});

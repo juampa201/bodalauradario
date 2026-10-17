@@ -1,0 +1,19 @@
+:root {
+  color-scheme: light;
+  --color-paper: #fffdf7;
+  --color-background: #f4f0e8;
+  --color-ink: #514438;
+  --color-muted: #8d7964;
+  --color-accent: #99674e;
+  --intro-duration: 4s;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--color-background); color: var(--color-ink); font-family: Georgia, 'Times New Roman', serif; }
+body.is-locked { overflow: hidden; }
+[hidden] { display: none !important; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button:focus-visible, a:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 6px; }
+.eyebrow { margin: 0; padding: 0 24px; text-align: center; font: 10px/1.6 Arial, sans-serif; letter-spacing: .25em; text-transform: uppercase; color: var(--color-muted); }
+.noscript-message { padding: 24px; text-align: center; line-height: 1.7; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
