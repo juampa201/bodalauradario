@@ -1,25 +1,33 @@
 /* Closed envelope → broken seal → open flap → raised invitation (4 seconds). */
-.intro { height: 100svh; min-height: 360px; overflow: hidden; position: relative; display: grid; place-items: center; isolation: isolate; background: radial-gradient(ellipse at 48% 42%, #fffdf7, #f4f0e8 65%, #eae3d7); }
+.intro { --envelope-width: min(92vw, 460px, 60svh); height: 100svh; min-height: 360px; overflow: hidden; position: relative; display: grid; place-items: center; isolation: isolate; background: radial-gradient(ellipse at 48% 42%, #fffdf7, #f4f0e8 65%, #eae3d7); }
+.intro.is-opening { min-height: max(100svh, calc(140px + var(--envelope-width) * 2.368)); }
 .intro::after { content: ''; position: absolute; inset: 0; z-index: 8; opacity: .09; pointer-events: none; background: url('../images/paper.svg'); }
-.intro > .eyebrow { position: absolute; top: 7%; font-size: clamp(8px, 1.5vw, 10px); }
-.scene { width: min(88vw, 460px, 52svh); aspect-ratio: 1.325; position: relative; transform: translateY(min(14svh, 100px)); perspective: 1400px; container-type: inline-size; }
+.intro > .eyebrow { position: absolute; top: max(20px, env(safe-area-inset-top)); font-size: clamp(8px, 1.5vw, 10px); }
+.scene { width: var(--envelope-width); aspect-ratio: 1.325; position: absolute; left: 50%; top: 50svh; transform: translate(-50%, calc(-50% + min(14svh, 100px))); perspective: 1400px; container-type: inline-size; transition: top 1s ease, transform 1s ease; }
+.is-opening .scene { top: calc(60px + var(--envelope-width) * 1.614); transform: translate(-50%, 0); }
 .envelope { width: 100%; height: 100%; position: relative; filter: drop-shadow(0 22px 22px #56412b1c); }
 .envelope-back { position: absolute; inset: 0; background: linear-gradient(135deg, #713b37, #96554b 55%, #7a403b); border-radius: 2px; }
-.invitation { position: absolute; z-index: 2; width: 90%; height: 95%; bottom: 3%; left: 5%; background: linear-gradient(125deg, #fffaf0, #f5e8d3); box-shadow: 0 0 0 1px #8f76521a, 0 3px 15px #5d412718; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 4cqw 3cqw; border-radius: 2px; }
+.invitation { position: absolute; z-index: 2; width: 94%; height: 210%; bottom: 3%; left: 3%; background: #fffdfa; color: #59443d; box-shadow: 0 0 0 1px #8f76521a, 0 3px 15px #5d412718; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2.3cqw; text-align: center; padding: 6cqw 5cqw; border-radius: 2px; clip-path: inset(55% 0 0); font-family: 'Josefin Sans', 'Trebuchet MS', sans-serif; }
 .invitation::before { content: ''; position: absolute; inset: 9px; border: 1px solid #bfa17940; pointer-events: none; }
-.title-prefix { margin: 0 0 1.7cqw; font-size: 3.5cqw; line-height: 1.2; font-style: italic; color: #8b725a; }
-.names { margin: 0; font-weight: 400; font-size: 8cqw; line-height: 1; letter-spacing: -.025em; }
-.names > span { display: block; }
-.names .ampersand { font-size: .57em; line-height: 1.3; color: #a58b69; font-style: italic; }
+.title-prefix { margin: 0; font-size: 3.3cqw; line-height: 1.3; font-weight: 400; text-transform: uppercase; color: inherit; }
+.names { margin: 0 0 1cqw; font: 400 16cqw/1.05 'Mrs Saint Delafield', 'Segoe Script', cursive; letter-spacing: 0; white-space: nowrap; }
+.names .ampersand { display: inline; font: inherit; margin: 0 .1em; }
 .fine-rule { width: 7cqw; height: 1px; flex-shrink: 0; background: #bca07e; margin: 2cqw 0; }
-.invitation-date { font-size: 3.5cqw; line-height: 1.3; color: #715a44; white-space: nowrap; }
+.invitation-date { font: 400 6.8cqw/1.2 'Mrs Saint Delafield', 'Segoe Script', cursive; color: inherit; white-space: nowrap; }
+.invitation-date-row { display: flex; align-items: center; gap: 2cqw; width: 100%; margin: 1.2cqw 0; }
+.invitation-date-row::before, .invitation-date-row::after { content: ''; flex: 1; height: 1px; background: #745a4d; }
+.invitation-copy { margin: 0; font-size: max(12px, 3.6cqw); font-weight: 400; line-height: 1.4; text-wrap: pretty; }
+.invitation-details { margin-top: .5cqw; }
+.invitation-rsvp { margin-top: .5cqw; }
+.invitation-sprig { width: 6cqw; height: 6cqw; object-fit: contain; opacity: .75; }
+.invitation > * { flex-shrink: 0; }
 .invitation-time { margin: 1.2cqw 0 0; font-size: 3.3cqw; color: #8c513c; }
 .invitation-place { margin: 2cqw 0 0; font-size: 3.3cqw; line-height: 1.5; color: #715a44; }
 .invitation-place span { display: block; font-size: 2.9cqw; font-style: italic; }
 .envelope-front { position: absolute; inset: 0; z-index: 4; overflow: hidden; border-radius: 0 0 2px 2px; clip-path: polygon(0 0, 50% 57%, 100% 0, 100% 100%, 0 100%); background: linear-gradient(32deg, #7b403b, #96564d 56%, #884940); }
 .envelope-front::before { content: ''; position: absolute; inset: 0; clip-path: polygon(0 100%, 50% 57%, 100% 100%); background: linear-gradient(180deg, #98594e, #80413b); }
 .envelope-front::after { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 100L50 57L100 100' fill='none' stroke='%23a18a6b' stroke-opacity='.3' stroke-width='1' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") center / 100% 100% no-repeat; }
-.envelope-flap { position: absolute; inset: 0; z-index: 5; transform-origin: top center; backface-visibility: hidden; clip-path: polygon(0 0, 100% 0, 99% 3%, 98% 6%, 95% 10%, 92% 13%, 89% 17%, 85% 21%, 81% 26%, 77% 30%, 73% 35%, 69% 39%, 65% 44%, 61% 48%, 57% 53%, 53% 57%, 50% 59%, 47% 57%, 43% 53%, 39% 48%, 35% 44%, 31% 39%, 27% 35%, 23% 30%, 19% 26%, 15% 21%, 11% 17%, 8% 13%, 5% 10%, 2% 6%, 1% 3%); background: linear-gradient(160deg, #9b5d51, #7c403c); }
+.envelope-flap { position: absolute; inset: 0; z-index: 5; transform-origin: top center; backface-visibility: visible; -webkit-backface-visibility: visible; clip-path: polygon(0 0, 100% 0, 99% 3%, 98% 6%, 95% 10%, 92% 13%, 89% 17%, 85% 21%, 81% 26%, 77% 30%, 73% 35%, 69% 39%, 65% 44%, 61% 48%, 57% 53%, 53% 57%, 50% 59%, 47% 57%, 43% 53%, 39% 48%, 35% 44%, 31% 39%, 27% 35%, 23% 30%, 19% 26%, 15% 21%, 11% 17%, 8% 13%, 5% 10%, 2% 6%, 1% 3%); background: linear-gradient(160deg, #9b5d51, #7c403c); }
 .envelope-back::after, .envelope-front > span, .envelope-flap::after { content: ''; position: absolute; inset: 0; background: url('../images/paper.svg'); mix-blend-mode: soft-light; opacity: .5; pointer-events: none; }
 .seal { position: absolute; z-index: 6; width: clamp(58px, 16cqw, 74px); aspect-ratio: 1; left: 50%; top: 46%; transform: translateX(-50%); display: grid; place-items: center; padding: 0; border: 0; cursor: pointer; background: radial-gradient(ellipse at 37% 32%, #fff9e9, #e8d9b8 70%, #c8ad7b 90%); border-radius: 47% 51% 45% 49%; box-shadow: 1px 5px 9px #3e231d60, inset 0 0 0 3px #ddc99f, inset 0 0 0 5px #fff4d7a0; transition: box-shadow .25s; }
 .seal:hover { box-shadow: 1px 6px 13px #3e231d70, inset 0 0 0 3px #ddc99f, inset 0 0 0 5px #fff4d7a0; }
@@ -40,8 +48,8 @@
 .is-opening .seal, .is-opening .envelope-flap, .is-opening .invitation { animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
 @keyframes break-seal { 0%, 5% { opacity: 1; transform: translateX(-50%) scale(1); } 19%, 100% { opacity: 0; transform: translate(-50%, 14px) scale(.94); } }
 @keyframes open-flap { 0%, 14% { transform: rotateX(0); z-index: 5; } 35% { z-index: 5; } 36%, 100% { z-index: 1; } 46%, 100% { transform: rotateX(180deg); } }
-@keyframes reveal-card { 0%, 35% { transform: translateY(0); } 100% { transform: translateY(-92%); } }
+@keyframes reveal-card { 0%, 35% { transform: translateY(0); clip-path: inset(55% 0 0); } 60% { clip-path: inset(0); } 100% { transform: translateY(-48%); clip-path: inset(0); } }
 @keyframes cue-appear { from { opacity: 0; } to { opacity: 1; } }
 @keyframes arrow-drift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
 @media (max-height: 500px) { .intro > .eyebrow { top: 4%; } .seal-hint { bottom: 5%; } .scroll-cue { bottom: 1%; right: 8px; } .scroll-cue span { display: none; } }
-@media (prefers-reduced-motion: reduce) { .is-opening .seal, .is-opening .envelope-flap, .is-opening .invitation { animation-duration: .01ms; } .scroll-cue, .scroll-cue svg { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .scene { transition: none; } .is-opening .seal, .is-opening .envelope-flap, .is-opening .invitation { animation-duration: .01ms; } .scroll-cue, .scroll-cue svg { animation: none; } }
