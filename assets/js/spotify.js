@@ -1,11 +1,9 @@
 (() => {
   'use strict';
   const seal = document.querySelector('.seal');
-  const toggle = document.querySelector('.spotify-toggle');
-  const panel = document.querySelector('.spotify-panel');
-  const close = document.querySelector('.spotify-close');
+  const section = document.querySelector('.spotify-section');
   const host = document.querySelector('#spotify-embed');
-  if (!seal || !toggle || !panel || !close || !host) return;
+  if (!seal || !section || !host) return;
   let controller;
   let ready = false;
   function tryPlay() {
@@ -16,10 +14,6 @@
     } catch (_) {
       // The iframe's Play button remains usable if browser policy blocks this.
     }
-  }
-  function setPanel(open) {
-    panel.hidden = !open;
-    toggle.setAttribute('aria-expanded', String(open));
   }
   window.onSpotifyIframeApiReady = (api) => {
     api.createController(host, {
@@ -32,20 +26,8 @@
     });
   };
   seal.addEventListener('click', () => {
-    toggle.hidden = false;
+    section.hidden = false;
     // Best effort during the user gesture; Safari/Spotify can require Play.
     tryPlay();
   }, { once: true });
-  toggle.addEventListener('click', () => {
-    const opening = panel.hidden;
-    setPanel(opening);
-    if (opening) tryPlay();
-  });
-  close.addEventListener('click', () => { setPanel(false); toggle.focus(); });
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && !panel.hidden) {
-      setPanel(false);
-      toggle.focus();
-    }
-  });
 })();
