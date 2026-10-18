@@ -19,6 +19,8 @@
   <script src="assets/js/countdown.js" defer></script>
   <script src="assets/js/envelope.js" defer></script>
   <script src="assets/js/music.js" defer></script>
+  <script src="assets/js/spotify.js" defer></script>
+  <script src="https://open.spotify.com/embed/iframe-api/v1" defer></script>
 </head>
 <body class="is-locked">
   <main>
@@ -48,7 +50,7 @@
       </div>
       <p class="seal-hint" id="seal-hint">Pulsa el sello para abrir</p>
       <a class="scroll-cue" href="#monasterio" aria-label="Descubrir el lugar de la boda" hidden>
-        <span>Nos vemos muy pronto</span>
+        <span>Nos vemos muy pronto<small>Desliza para descubrir</small></span>
         <svg width="20" height="30" viewBox="0 0 20 30" fill="none" aria-hidden="true"><path d="M10 2v24m-6-6 6 6 6-6" stroke="currentColor" stroke-width="1"/></svg>
       </a>
     </section>
@@ -96,6 +98,14 @@
       </div>
     </section>
   </main>
+  <button class="spotify-toggle" type="button" hidden aria-controls="spotify-panel" aria-expanded="false">Escuchar canción ♫</button>
+  <aside class="spotify-panel" id="spotify-panel" aria-label="Thinking Out Loud de Ed Sheeran" hidden>
+    <button class="spotify-close" type="button" aria-label="Cerrar reproductor">Cerrar ×</button>
+    <div id="spotify-embed">
+      <iframe title="Thinking Out Loud — Ed Sheeran, Spotify" src="https://open.spotify.com/embed/track/2NR99tTHkakE63qMMnkgZV" width="100%" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <a href="https://open.spotify.com/track/2NR99tTHkakE63qMMnkgZV" target="_blank" rel="noopener noreferrer">Abrir en Spotify ↗</a>
+  </aside>
   <button class="music-toggle" type="button" hidden aria-label="Reproducir música" aria-pressed="false">Música <span aria-hidden="true">♫</span></button>
   <audio id="wedding-music" preload="none" loop></audio>
   <noscript><style>body.is-locked{overflow:auto}.intro{display:none}.countdown-section[hidden]{display:flex!important}.welcome-section[hidden],.monastery-section[hidden]{display:block!important}</style><p class="noscript-message">Laura &amp; Darío · Nos casamos el 2 de octubre de 2027 a las 13:00 en el Monasterio de San Clodio, Leiro, Ourense. Activa JavaScript para abrir la invitación y ver la cuenta atrás.</p></noscript>

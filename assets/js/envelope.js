@@ -25,6 +25,13 @@
     if (welcomeSection) welcomeSection.hidden = false;
     document.body.classList.remove('is-locked');
     intro.classList.add('is-open');
+    // The invitation can be taller than a phone screen: keep the hint in view
+    // until the visitor starts scrolling, then remove it from view and tab order.
+    function updateScrollCue() {
+      cue.hidden = window.scrollY > 64;
+    }
+    window.addEventListener('scroll', updateScrollCue, { passive: true });
+    updateScrollCue();
     // Transfer focus after keyboard activation; pointer activation needs no focus ring.
     if (openedWithKeyboard && (document.activeElement === seal || document.activeElement === document.body)) {
       cue.focus({ preventScroll: true });
