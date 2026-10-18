@@ -1,10 +1,10 @@
 :root {
   color-scheme: light;
-  --color-paper: #fffdf7;
-  --color-background: #f4f0e8;
-  --color-ink: #514438;
-  --color-muted: #8d7964;
-  --color-accent: #99674e;
+  --color-paper: #fffaf0;
+  --color-background: #f4ede2;
+  --color-ink: #53392f;
+  --color-muted: #97735a;
+  --color-accent: #a45b3e;
   --intro-duration: 4s;
 }
 * { box-sizing: border-box; }
@@ -16,4 +16,6 @@ button, a { -webkit-tap-highlight-color: transparent; }
 button:focus-visible, a:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 6px; }
 .eyebrow { margin: 0; padding: 0 24px; text-align: center; font: 10px/1.6 Arial, sans-serif; letter-spacing: .25em; text-transform: uppercase; color: var(--color-muted); }
 .noscript-message { padding: 24px; text-align: center; line-height: 1.7; }
+.music-toggle { position: fixed; right: 18px; bottom: 18px; z-index: 20; border: 1px solid #a45b3e50; border-radius: 30px; padding: 12px 18px; background: #fffaf0ed; color: var(--color-ink); font: 11px Georgia, serif; cursor: pointer; box-shadow: 0 3px 18px #53392f12; }
+.music-toggle span { margin-left: 6px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

@@ -11,16 +11,18 @@
   <link rel="stylesheet" href="assets/css/envelope.css">
   <link rel="stylesheet" href="assets/css/countdown.css">
   <link rel="stylesheet" href="assets/css/welcome.css">
+  <link rel="stylesheet" href="assets/css/monastery.css">
   <script src="assets/js/config.js" defer></script>
   <script src="assets/js/countdown.js" defer></script>
   <script src="assets/js/envelope.js" defer></script>
+  <script src="assets/js/music.js" defer></script>
 </head>
 <body class="is-locked">
   <main>
     <section class="intro" aria-label="Invitación de boda">
       <img class="botanical botanical--left" src="assets/images/branch.svg" alt="" aria-hidden="true">
       <img class="botanical botanical--right" src="assets/images/branch.svg" alt="" aria-hidden="true">
-      <p class="eyebrow">Una historia, un nuevo comienzo</p>
+      <p class="eyebrow">Un sí en Galicia · 2 de octubre de 2027</p>
       <div class="scene">
         <div class="envelope">
           <div class="envelope-back" aria-hidden="true"></div>
@@ -29,25 +31,40 @@
             <h1 class="names"><span>Laura</span><span class="ampersand">&amp;</span><span>Darío</span></h1>
             <span class="fine-rule" aria-hidden="true"></span>
             <time class="invitation-date" datetime="2027-10-02">2 de octubre de 2027</time>
+            <p class="invitation-time">A las <time datetime="2027-10-02T13:00:00+02:00">13:00 h</time></p>
+            <p class="invitation-place">Monasterio de San Clodio<span>Leiro, Ourense</span></p>
           </article>
-          <div class="envelope-front" aria-hidden="true"></div>
+          <div class="envelope-front" aria-hidden="true"><span></span></div>
           <div class="envelope-flap" aria-hidden="true"></div>
           <button class="seal" type="button" aria-label="Pulsar el sello para abrir la invitación" aria-controls="invitation" aria-describedby="seal-hint" aria-expanded="false">
-            <span aria-hidden="true">L<span class="seal-amp">&amp;</span>D</span>
+            <img src="assets/images/shell.svg" alt="" aria-hidden="true" width="48" height="48">
           </button>
         </div>
       </div>
       <p class="seal-hint" id="seal-hint">Pulsa el sello para abrir</p>
-      <a class="scroll-cue" href="#cuenta-atras" aria-label="Bajar a la cuenta atrás" hidden>
+      <a class="scroll-cue" href="#monasterio" aria-label="Descubrir el lugar de la boda" hidden>
         <span>Nos vemos muy pronto</span>
         <svg width="20" height="30" viewBox="0 0 20 30" fill="none" aria-hidden="true"><path d="M10 2v24m-6-6 6 6 6-6" stroke="currentColor" stroke-width="1"/></svg>
       </a>
+    </section>
+    <section class="monastery-section" id="monasterio" aria-labelledby="monastery-title" hidden>
+      <div class="monastery-heading">
+        <p class="eyebrow eyebrow--inline">Galicia, donde empieza nuestro siempre</p>
+        <h2 id="monastery-title">Monasterio de San Clodio</h2>
+        <p class="monastery-location">Leiro, Ourense</p>
+      </div>
+      <figure class="monastery-photo">
+        <img src="assets/images/monasterio.jpg" alt="Claustro del Monasterio de San Clodio en Leiro, Ourense" width="1200" height="900" loading="lazy">
+        <figcaption>Fotografía: <a href="https://commons.wikimedia.org/wiki/File:San_Clodio_de_Leiro.Mosteiro.Galicia_1.jpg" target="_blank" rel="noopener noreferrer">José Antonio Gil Martínez / FreeCat</a> · <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener noreferrer">CC BY 2.0</a> · Encuadre adaptado</figcaption>
+      </figure>
+      <p class="monastery-date">2 de octubre de 2027 <span>·</span> 13:00 h</p>
+      <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Monasterio+de+San+Clodio+Leiro+Ourense" target="_blank" rel="noopener noreferrer">Cómo llegar <span aria-hidden="true">↗</span></a>
     </section>
     <section class="countdown-section" id="cuenta-atras" aria-labelledby="countdown-title" hidden>
       <img class="countdown-sprig" src="assets/images/branch.svg" alt="" aria-hidden="true">
       <p class="eyebrow eyebrow--inline">La cuenta atrás para nuestro sí</p>
       <h2 id="countdown-title">Cada vez queda menos</h2>
-      <p class="wedding-date"><time datetime="2027-10-02T12:00:00+02:00">2 de octubre de 2027 <span>·</span> 12:00 h</time></p>
+      <p class="wedding-date"><time datetime="2027-10-02T13:00:00+02:00">2 de octubre de 2027 <span>·</span> 13:00 h</time></p>
       <div class="countdown" role="timer" aria-label="Tiempo restante para la boda">
         <div class="countdown-unit"><span class="countdown-number" data-countdown="days">—</span><span class="countdown-label">Días</span></div>
         <div class="countdown-unit"><span class="countdown-number" data-countdown="hours">—</span><span class="countdown-label">Horas</span></div>
@@ -55,6 +72,7 @@
         <div class="countdown-unit"><span class="countdown-number" data-countdown="seconds">—</span><span class="countdown-label">Segundos</span></div>
       </div>
       <p class="countdown-message" role="status" hidden>¡Ha llegado el gran día!</p>
+      <img class="autumn-leaves" src="assets/images/autumn-leaves.svg" alt="" width="200" height="90" aria-hidden="true">
     </section>
     <section class="welcome-section" id="bienvenidos" aria-labelledby="welcome-title" hidden>
       <div class="welcome-layout">
@@ -62,9 +80,7 @@
           <p class="eyebrow eyebrow--inline">Qué alegría teneros aquí</p>
           <h2 id="welcome-title">Bienvenidos</h2>
           <span class="welcome-rule" aria-hidden="true"></span>
-          <p>Hay momentos que se vuelven aún más especiales cuando los compartimos con las personas que queremos. Y este es uno de ellos.</p>
-          <p>Nos hace muchísima ilusión invitaros a celebrar nuestra boda y vivir juntos un día lleno de abrazos, risas y recuerdos que guardaremos para siempre.</p>
-          <p>Gracias por formar parte de nuestra historia. ¡Estamos deseando celebrar este nuevo comienzo con vosotros!</p>
+          <!-- Texto de bienvenida pendiente de los novios. -->
           <p class="welcome-signature">Con todo nuestro cariño,<br><span>Laura &amp; Darío</span></p>
         </div>
         <!-- Espacio reservado para la foto. Para añadirla, guarda el archivo en
@@ -75,6 +91,8 @@
       </div>
     </section>
   </main>
-  <noscript><style>body.is-locked{overflow:auto}.seal,.seal-hint{display:none}.invitation{transform:translateY(-92%)}.envelope-flap{visibility:hidden}.countdown-section[hidden]{display:flex!important}.welcome-section[hidden]{display:block!important}</style><p class="noscript-message">Laura &amp; Darío · Nos casamos el 2 de octubre de 2027 a las 12:00. Activa JavaScript para abrir la invitación y ver la cuenta atrás.</p></noscript>
+  <button class="music-toggle" type="button" hidden aria-label="Reproducir música" aria-pressed="false">Música <span aria-hidden="true">♫</span></button>
+  <audio id="wedding-music" preload="none" loop></audio>
+  <noscript><style>body.is-locked{overflow:auto}.seal,.seal-hint{display:none}.invitation{transform:translateY(-92%)}.envelope-flap{visibility:hidden}.countdown-section[hidden]{display:flex!important}.welcome-section[hidden],.monastery-section[hidden]{display:block!important}</style><p class="noscript-message">Laura &amp; Darío · Nos casamos el 2 de octubre de 2027 a las 13:00 en el Monasterio de San Clodio, Leiro, Ourense. Activa JavaScript para abrir la invitación y ver la cuenta atrás.</p></noscript>
 </body>
 </html>

@@ -1,4 +1,5 @@
-.countdown-section { min-height: 85svh; padding: 85px 20px 100px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: #f8f5ee; }
+.countdown-section { padding: clamp(48px, 7vw, 80px) 20px 32px; display: flex; flex-direction: column; align-items: center; text-align: center; background: #eee2d0; }
+.autumn-leaves { display: block; width: 160px; height: 72px; margin-top: 30px; opacity: .85; }
 .countdown-sprig { width: 52px; height: 65px; object-fit: contain; transform: rotate(-24deg); opacity: .65; margin-bottom: 26px; }
 .eyebrow--inline { font-size: 9px; }
 h2 { margin: 18px 0; font-size: clamp(29px, 5.5vw, 45px); font-weight: 400; letter-spacing: -.035em; }

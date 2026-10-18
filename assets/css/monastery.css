@@ -1,0 +1,12 @@
+.monastery-section { padding: clamp(56px, 8vw, 100px) 24px 64px; text-align: center; background: var(--color-paper); }
+.monastery-heading { max-width: 680px; margin: 0 auto 32px; }
+.monastery-heading h2 { text-wrap: balance; }
+.monastery-location { margin: 0; color: var(--color-muted); font-style: italic; font-size: 19px; }
+.monastery-photo { margin: 0 auto 28px; max-width: 1040px; overflow: hidden; border-radius: 220px 220px 3px 3px; background: #e4d9c6; }
+.monastery-photo img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; }
+.monastery-photo figcaption { padding: 10px 14px; font: 9px/1.6 Arial, sans-serif; color: var(--color-muted); background: var(--color-paper); }
+.monastery-photo figcaption a { color: inherit; text-underline-offset: 2px; }
+.monastery-date { font-size: 17px; color: var(--color-ink); }
+.monastery-date span { margin: 0 8px; color: var(--color-accent); }
+.map-link { display: inline-block; padding: 10px 0; color: var(--color-accent); font: 11px/1.5 Arial, sans-serif; letter-spacing: .12em; text-decoration: none; border-bottom: 1px solid #a45b3e60; }
+@media (max-width: 600px) { .monastery-photo { border-radius: 130px 130px 3px 3px; } .monastery-photo img { aspect-ratio: 4 / 3; } }
