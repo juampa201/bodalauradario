@@ -8,5 +8,5 @@ window.Wedding.config = Object.freeze({
   musicSrc: '',
   musicVolume: 0.35,
   // Pega aquí la URL /exec tras desplegar apps-script/Code.gs como aplicación web.
-  appsScriptUrl: ''
+  appsScriptUrl: 'https://script.google.com/macros/s/AKfycbwgA3JO2brM85IXGtIRBGq--fcjtrKQxdW_YcKCcSpqdkWbf5OSIsyFjSoAsh9CywR2/exec'
 });
