@@ -21,6 +21,8 @@
     nextSection.hidden = false;
     const welcomeSection = document.querySelector('.welcome-section');
     if (welcomeSection) welcomeSection.hidden = false;
+    const giftSection = document.querySelector('.gift-section');
+    if (giftSection) giftSection.hidden = false;
     const rsvpSection = document.querySelector('.rsvp-section');
     if (rsvpSection) rsvpSection.hidden = false;
     document.body.classList.remove('is-locked');
