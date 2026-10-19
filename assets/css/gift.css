@@ -29,8 +29,7 @@
 .gift-card::before { top: 12px; left: 10px; transform: rotate(-24deg); }
 .gift-card::after { right: 10px; bottom: 12px; transform: scaleX(-1) rotate(-24deg); }
 .gift-mark { display: block; width: 38px; height: 38px; margin: 0 auto 12px; color: var(--color-accent); opacity: .68; }
-.gift-card > .eyebrow { padding: 0 24px; }
-.gift-card h2 { margin: 11px 0 22px; font-weight: 400; }
+.gift-card > .eyebrow { margin: 0 0 24px; padding: 0 24px; }
 .gift-copy {
   max-width: 580px;
   margin: 0 auto 12px;
@@ -47,9 +46,22 @@
   border-radius: 9px;
   background: #fffdf9;
   color: var(--color-ink);
+  -webkit-text-fill-color: var(--color-ink);
   font: 600 clamp(16px, 3.7vw, 22px)/1.5 Georgia, "Times New Roman", serif;
   letter-spacing: .055em;
   user-select: all;
+}
+.gift-iban a,
+.gift-iban a:link,
+.gift-iban a:visited,
+.gift-iban a:hover,
+.gift-iban a:active,
+.gift-iban a[x-apple-data-detectors] {
+  color: var(--color-ink) !important;
+  -webkit-text-fill-color: var(--color-ink) !important;
+  text-decoration: none !important;
+  border-bottom: 0 !important;
+  font: inherit !important;
 }
 .gift-copy-button {
   border: 1px solid #a45b3e80;
