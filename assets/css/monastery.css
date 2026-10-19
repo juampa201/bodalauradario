@@ -30,26 +30,26 @@
   opacity: .3;
   transform: rotate(8deg);
 }
-.monastery-heading { max-width: 680px; margin: 0 auto 7px; }
-.monastery-heading h2 { margin: 9px 0 3px; text-wrap: balance; }
+.monastery-heading { max-width: 680px; margin: 0 auto 10px; }
+.monastery-heading h2 { margin: 11px 0 5px; text-wrap: balance; }
 .monastery-location { margin: 0; color: var(--color-muted); font-style: italic; font-size: 19px; }
 .monastery-photo { width: min(100%, 1100px); margin: 0 auto; background: transparent; }
 .monastery-photo img { display: block; width: 100%; height: auto; object-fit: contain; mix-blend-mode: multiply; }
-.countdown-heading { margin-top: 8px; }
-.countdown-heading h2 { margin: 5px 0 0; }
-.wedding-date { margin: 4px 0 0; color: #826a54; font-size: clamp(14px, 2.5vw, 18px); line-height: 1.7; }
+.countdown-heading { margin-top: 12px; }
+.countdown-heading h2 { margin: 8px 0 0; }
+.wedding-date { margin: 7px 0 0; color: #826a54; font-size: clamp(14px, 2.5vw, 18px); line-height: 1.7; }
 .wedding-date span { padding: 0 5px; }
-.wedding-section .countdown { margin-top: 20px; }
+.wedding-section .countdown { margin-top: 24px; }
 .wedding-section .countdown-unit { gap: 8px; padding: 0 6px; }
 .wedding-section .countdown-message { margin: 20px 0 0; }
 @media (max-width: 600px) {
   .wedding-section { padding: 34px 16px 40px; }
   .wedding-section::before { top: 54%; left: 2px; width: 42px; height: 58px; opacity: .2; }
   .wedding-section::after { top: 72%; right: 2px; width: 58px; height: 25px; opacity: .24; }
-  .monastery-heading { margin-bottom: 5px; }
-  .monastery-heading h2 { margin-top: 7px; }
+  .monastery-heading { margin-bottom: 8px; }
+  .monastery-heading h2 { margin-top: 9px; }
   .monastery-location { font-size: 17px; }
   .monastery-photo { width: calc(100% + 16px); margin-left: -8px; }
-  .countdown-heading { margin-top: 6px; }
-  .wedding-section .countdown { margin-top: 16px; }
+  .countdown-heading { margin-top: 9px; }
+  .wedding-section .countdown { margin-top: 19px; }
 }
