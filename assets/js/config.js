@@ -6,5 +6,7 @@ window.Wedding.config = Object.freeze({
   timeZone: 'Europe/Madrid',
   // Add an audio file to assets/audio/ and set its relative path here.
   musicSrc: '',
-  musicVolume: 0.35
+  musicVolume: 0.35,
+  // Pega aquí la URL /exec tras desplegar apps-script/Code.gs como aplicación web.
+  appsScriptUrl: ''
 });
