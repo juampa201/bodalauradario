@@ -1,16 +1,47 @@
-.monastery-section { padding: clamp(48px, 8vw, 88px) clamp(16px, 4vw, 32px) 56px; text-align: center; background: var(--color-paper); }
-.monastery-heading { max-width: 680px; margin: 0 auto 24px; }
+.monastery-heading { max-width: 680px; margin: 0 auto 10px; }
 .monastery-heading h2 { text-wrap: balance; }
 .monastery-location { margin: 0; color: var(--color-muted); font-style: italic; font-size: 19px; }
-.monastery-photo { width: min(100%, 1100px); margin: 0 auto 22px; background: transparent; }
+.monastery-photo { width: min(100%, 1100px); margin: 0 auto; background: transparent; }
 .monastery-photo img { display: block; width: 100%; height: auto; object-fit: contain; mix-blend-mode: multiply; }
-.monastery-date { font-size: 17px; color: var(--color-ink); }
-.monastery-date span { margin: 0 8px; color: var(--color-accent); }
-.map-link { display: inline-block; padding: 10px 0; color: var(--color-accent); font: 11px/1.5 Arial, sans-serif; letter-spacing: .12em; text-decoration: none; border-bottom: 1px solid #a45b3e60; }
+.wedding-date { margin: 5px 0 0; color: #826a54; font-size: clamp(14px, 2.5vw, 18px); line-height: 1.8; }
+.wedding-date span { padding: 0 5px; }
+.countdown-heading { margin-top: 22px; }
+.countdown-heading .countdown-sprig { width: 42px; height: 52px; margin: 0 auto 8px; opacity: .52; }
+.countdown-heading h2 { margin: 10px 0 0; }
+.wedding-section .countdown { margin-top: 28px; }
+.route-map {
+  width: min(100%, 920px);
+  margin: 42px auto 0;
+  padding: clamp(16px, 3vw, 28px);
+  border: 1px solid #a45b3e28;
+  border-radius: 16px;
+  background: #fffaf0a6;
+}
+.route-map-title { margin: 9px 0 0; font-size: clamp(24px, 4vw, 32px); font-weight: 400; }
+.route-map-figure { margin: 18px 0 12px; }
+.route-map-art { display: block; width: 100%; height: auto; border-radius: 12px; }
+.route-map-figure figcaption { margin-top: 8px; color: var(--color-muted); font-size: 12px; font-style: italic; }
+.route-map-directions { max-width: 700px; margin: 0 auto; color: var(--color-muted); font-size: 14px; line-height: 1.7; }
+.map-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 10px 18px;
+  border: 1px solid #a45b3e60;
+  border-radius: 999px;
+  color: var(--color-accent);
+  font: 11px/1.5 Arial, sans-serif;
+  letter-spacing: .1em;
+  text-decoration: none;
+}
+.map-link:hover { background: #a45b3e0d; }
 @media (max-width: 600px) {
-  .monastery-section { padding-right: 16px; padding-left: 16px; }
-  .monastery-heading { margin-bottom: 18px; }
+  .monastery-heading { margin-bottom: 8px; }
   .monastery-location { font-size: 17px; }
-  .monastery-photo { width: calc(100% + 16px); margin-left: -8px; margin-bottom: 18px; }
-  .monastery-date { font-size: 15px; }
+  .monastery-photo { width: calc(100% + 16px); margin-left: -8px; }
+  .countdown-heading { margin-top: 18px; }
+  .route-map { margin-top: 30px; padding: 14px 12px 16px; border-radius: 13px; }
+  .route-map-figure { margin: 13px 0 10px; }
+  .route-map-directions { font-size: 13px; }
 }
