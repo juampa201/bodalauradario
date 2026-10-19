@@ -14,11 +14,13 @@
   <link rel="stylesheet" href="assets/css/envelope.css">
   <link rel="stylesheet" href="assets/css/countdown.css">
   <link rel="stylesheet" href="assets/css/welcome.css">
+  <link rel="stylesheet" href="assets/css/gift.css">
   <link rel="stylesheet" href="assets/css/rsvp.css">
   <link rel="stylesheet" href="assets/css/monastery.css">
   <script src="assets/js/config.js" defer></script>
   <script src="assets/js/countdown.js" defer></script>
   <script src="assets/js/envelope.js" defer></script>
+  <script src="assets/js/gift.js" defer></script>
   <script src="assets/js/rsvp.js" defer></script>
   <script src="assets/js/music.js" defer></script>
   <script src="assets/js/spotify.js" defer></script>
@@ -92,6 +94,21 @@
         <div class="welcome-photo">
           <!-- <img src="assets/images/novios.jpg" alt="Laura y Darío" loading="lazy" width="1200" height="1500"> -->
         </div>
+      </div>
+    </section>
+    <section class="gift-section" id="regalo" aria-labelledby="gift-title" hidden>
+      <div class="gift-card">
+        <svg class="gift-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <path d="M8 21h32v21H8zM5 15h38v7H5zM24 15v27M24 15c-10 0-12-8-7-10 5-2 7 10 7 10Zm0 0c10 0 12-8 7-10-5-2-7 10-7 10Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <p class="eyebrow eyebrow--inline">Un detalle, solo si os apetece</p>
+        <h2 id="gift-title">Un regalo con cariño</h2>
+        <p class="gift-copy">Lo importante es que vengáis con ilusión, alegría y ganas de pasarlo bien.</p>
+        <p class="gift-copy">Pero si queréis hacernos un regalo, aquí tenéis nuestro número de cuenta.</p>
+        <p class="gift-iban" id="gift-iban" data-iban="ES0901825322210001097876">ES09 0182 5322 2100 0109 7876</p>
+        <button class="gift-copy-button" type="button" data-copy-iban>Copiar número de cuenta</button>
+        <p class="gift-copy-status" id="gift-copy-status" role="status" aria-live="polite"></p>
+        <p class="gift-thanks">Muchas gracias</p>
       </div>
     </section>
     <section class="rsvp-section" id="confirmacion" aria-labelledby="rsvp-title" hidden>
