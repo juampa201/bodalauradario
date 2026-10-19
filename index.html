@@ -14,10 +14,12 @@
   <link rel="stylesheet" href="assets/css/envelope.css">
   <link rel="stylesheet" href="assets/css/countdown.css">
   <link rel="stylesheet" href="assets/css/welcome.css">
+  <link rel="stylesheet" href="assets/css/rsvp.css">
   <link rel="stylesheet" href="assets/css/monastery.css">
   <script src="assets/js/config.js" defer></script>
   <script src="assets/js/countdown.js" defer></script>
   <script src="assets/js/envelope.js" defer></script>
+  <script src="assets/js/rsvp.js" defer></script>
   <script src="assets/js/music.js" defer></script>
   <script src="assets/js/spotify.js" defer></script>
   <script src="https://open.spotify.com/embed/iframe-api/v1" defer></script>
@@ -94,6 +96,58 @@
         <div class="welcome-photo">
           <!-- <img src="assets/images/novios.jpg" alt="Laura y Darío" loading="lazy" width="1200" height="1500"> -->
         </div>
+      </div>
+    </section>
+    <section class="rsvp-section" id="confirmacion" aria-labelledby="rsvp-title" hidden>
+      <div class="rsvp-container">
+        <p class="eyebrow eyebrow--inline">Nos encantará saber de vosotros</p>
+        <h2 id="rsvp-title">Confirma tu asistencia</h2>
+        <p class="rsvp-intro">Para ayudarnos a preparar cada detalle, cuéntanos quiénes nos acompañaréis.</p>
+
+        <form class="rsvp-form" id="rsvp-form">
+          <label class="rsvp-field">
+            <span>Nombre y apellidos <span class="required-mark" aria-hidden="true">*</span></span>
+            <input type="text" name="guestName" autocomplete="name" maxlength="120" required>
+          </label>
+
+          <label class="rsvp-field">
+            <span>Nombre y apellidos del acompañante</span>
+            <input type="text" name="companionName" autocomplete="off" maxlength="120">
+          </label>
+
+          <fieldset class="rsvp-field rsvp-choice-group">
+            <legend>¿Vienes con tus hijos? <span class="required-mark" aria-hidden="true">*</span></legend>
+            <div class="rsvp-choices">
+              <label class="rsvp-choice"><input type="radio" name="children" value="Sí" required><span>Sí</span></label>
+              <label class="rsvp-choice"><input type="radio" name="children" value="No" required><span>No</span></label>
+            </div>
+          </fieldset>
+
+          <div class="rsvp-field">
+            <p class="rsvp-help">Además, pondremos a tu disposición un servicio de autobuses desde el centro de Ourense para el día de la boda (más adelante os comunicaremos el lugar exacto de recogida y las horas), para que podáis trasladaros cómodamente.</p>
+            <label for="rsvp-bus">¿Necesitaréis este servicio de autobús? <span class="required-mark" aria-hidden="true">*</span></label>
+            <select id="rsvp-bus" name="busService" required>
+              <option value="" selected disabled>Selecciona una opción</option>
+              <option value="Sí, a la ida y a la vuelta">Sí, a la ida y a la vuelta</option>
+              <option value="Sí, solo a la ida">Sí, solo a la ida</option>
+              <option value="Sí, solo a la vuelta">Sí, solo a la vuelta</option>
+              <option value="No, iremos por nuestra cuenta">No, iremos por nuestra cuenta</option>
+            </select>
+          </div>
+
+          <label class="rsvp-field">
+            <span>¿Tienes alguna alergia, intolerancia o necesidad dietética especial (vegetariano, vegano, celíaco, etc.)? Por favor, indícanoslo.</span>
+            <textarea name="dietary" rows="4" maxlength="1000"></textarea>
+          </label>
+
+          <div class="rsvp-honeypot" aria-hidden="true">
+            <label for="rsvp-website">No rellenes este campo</label>
+            <input id="rsvp-website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <button class="rsvp-submit" type="submit">Enviar confirmación</button>
+          <p class="rsvp-status" id="rsvp-status" role="status" aria-live="polite" hidden></p>
+        </form>
       </div>
     </section>
     <footer class="spotify-section" aria-label="Thinking Out Loud de Ed Sheeran" hidden>
