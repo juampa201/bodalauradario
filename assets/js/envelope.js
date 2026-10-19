@@ -23,6 +23,8 @@
     if (monasterySection) monasterySection.hidden = false;
     const welcomeSection = document.querySelector('.welcome-section');
     if (welcomeSection) welcomeSection.hidden = false;
+    const rsvpSection = document.querySelector('.rsvp-section');
+    if (rsvpSection) rsvpSection.hidden = false;
     document.body.classList.remove('is-locked');
     intro.classList.add('is-open');
     // The invitation can be taller than a phone screen: keep the hint in view
