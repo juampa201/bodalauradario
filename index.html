@@ -51,12 +51,12 @@
         </div>
       </div>
       <p class="seal-hint" id="seal-hint">Pulsa el sello para abrir</p>
-      <a class="scroll-cue" href="#monasterio" aria-label="Descubrir el lugar de la boda" hidden>
+      <a class="scroll-cue" href="#cuenta-atras" aria-label="Descubrir el lugar de la boda" hidden>
         <span>Nos vemos muy pronto</span>
         <svg width="20" height="30" viewBox="0 0 20 30" fill="none" aria-hidden="true"><path d="M10 2v24m-6-6 6 6 6-6" stroke="currentColor" stroke-width="1"/></svg>
       </a>
     </section>
-    <section class="monastery-section" id="monasterio" aria-labelledby="monastery-title" hidden>
+    <section class="countdown-section wedding-section" id="cuenta-atras" aria-labelledby="monastery-title countdown-title" hidden>
       <div class="monastery-heading">
         <p class="eyebrow eyebrow--inline">Galicia, donde empieza nuestro siempre</p>
         <h2 id="monastery-title">Monasterio de San Clodio</h2>
@@ -65,14 +65,13 @@
       <figure class="monastery-photo">
         <img src="assets/images/monasterio-ilustracion.webp" alt="Ilustración en acuarela del claustro del Monasterio de San Clodio, con algunos detalles otoñales dibujados" width="1400" height="788" loading="lazy" decoding="async">
       </figure>
-      <p class="monastery-date">2 de octubre de 2027 <span>·</span> 13:00 h</p>
-      <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Monasterio+de+San+Clodio+Leiro+Ourense" target="_blank" rel="noopener noreferrer">Cómo llegar <span aria-hidden="true">↗</span></a>
-    </section>
-    <section class="countdown-section" id="cuenta-atras" aria-labelledby="countdown-title" hidden>
-      <img class="countdown-sprig" src="assets/images/branch.svg" alt="" aria-hidden="true">
-      <p class="eyebrow eyebrow--inline">La cuenta atrás para nuestro sí</p>
-      <h2 id="countdown-title">Cada vez queda menos</h2>
       <p class="wedding-date"><time datetime="2027-10-02T13:00:00+02:00">2 de octubre de 2027 <span>·</span> 13:00 h</time></p>
+
+      <div class="countdown-heading">
+        <img class="countdown-sprig" src="assets/images/branch.svg" alt="" aria-hidden="true">
+        <p class="eyebrow eyebrow--inline">La cuenta atrás para nuestro sí</p>
+        <h2 id="countdown-title">Cada vez queda menos</h2>
+      </div>
       <div class="countdown" role="timer" aria-label="Tiempo restante para la boda">
         <div class="countdown-unit"><span class="countdown-number" data-countdown="days">—</span><span class="countdown-label">Días</span></div>
         <div class="countdown-unit"><span class="countdown-number" data-countdown="hours">—</span><span class="countdown-label">Horas</span></div>
@@ -80,6 +79,17 @@
         <div class="countdown-unit"><span class="countdown-number" data-countdown="seconds">—</span><span class="countdown-label">Segundos</span></div>
       </div>
       <p class="countdown-message" role="status" hidden>¡Ha llegado el gran día!</p>
+
+      <div class="route-map">
+        <p class="eyebrow eyebrow--inline">Cómo llegar</p>
+        <h3 class="route-map-title">Un camino hasta San Clodio</h3>
+        <figure class="route-map-figure">
+          <img class="route-map-art" src="assets/images/mapa-san-clodio.svg" alt="Croquis ilustrado y orientativo desde Ourense, pasando por O Carballiño, hasta el Monasterio de San Clodio en Leiro" width="860" height="520" loading="lazy" decoding="async">
+          <figcaption>Mapa esquemático, no a escala.</figcaption>
+        </figure>
+        <p class="route-map-directions">Desde Ourense: A-52 y AG-53, después AG-54 y N-541; continúa por la N-120 y el acceso local OUR-CV-408 hasta San Clodio.</p>
+        <a class="map-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=Ourense%2C+Espa%C3%B1a&amp;destination=Monasterio+de+San+Clodio%2C+Leiro%2C+Ourense" target="_blank" rel="noopener noreferrer">Abrir ruta en Google Maps <span aria-hidden="true">↗</span></a>
+      </div>
       <img class="autumn-leaves" src="assets/images/autumn-leaves.svg" alt="" width="200" height="90" aria-hidden="true">
     </section>
     <section class="welcome-section" id="bienvenidos" aria-labelledby="welcome-title" hidden>
@@ -161,6 +171,6 @@
   </main>
   <button class="music-toggle" type="button" hidden aria-label="Reproducir música" aria-pressed="false">Música <span aria-hidden="true">♫</span></button>
   <audio id="wedding-music" preload="none" loop></audio>
-  <noscript><style>body.is-locked{overflow:auto}.intro{display:none}.countdown-section[hidden]{display:flex!important}.welcome-section[hidden],.monastery-section[hidden]{display:block!important}</style><p class="noscript-message">Laura &amp; Darío · Nos casamos el 2 de octubre de 2027 a las 13:00 en el Monasterio de San Clodio, Leiro, Ourense. Activa JavaScript para abrir la invitación y ver la cuenta atrás.</p></noscript>
+  <noscript><style>body.is-locked{overflow:auto}.intro{display:none}.countdown-section[hidden]{display:flex!important}.welcome-section[hidden]{display:block!important}</style><p class="noscript-message">Laura &amp; Darío · Nos casamos el 2 de octubre de 2027 a las 13:00 en el Monasterio de San Clodio, Leiro, Ourense. Activa JavaScript para abrir la invitación y ver la cuenta atrás.</p></noscript>
 </body>
 </html>
