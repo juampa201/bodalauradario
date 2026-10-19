@@ -37,10 +37,26 @@
   padding: clamp(24px, 5vw, 44px);
   border: 1px solid #a45b3e28;
   position: relative;
+  isolation: isolate;
+  overflow: hidden;
   border-radius: 12px;
   background: var(--color-paper);
   box-shadow: 0 12px 36px #53392f08;
 }
+.rsvp-form::before,
+.rsvp-form::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  width: 76px;
+  height: 32px;
+  background: url("../images/autumn-leaves.svg") center / contain no-repeat;
+  opacity: .18;
+  pointer-events: none;
+}
+.rsvp-form::before { top: 12px; right: 13px; transform: rotate(8deg); }
+.rsvp-form::after { bottom: 12px; left: 13px; transform: rotate(188deg); }
+.rsvp-form > * { position: relative; z-index: 1; }
 .rsvp-field {
   display: grid;
   gap: 9px;
@@ -133,7 +149,10 @@
   .rsvp-container::after { display: none; }
   .rsvp-section { padding-right: 18px; padding-left: 18px; }
   .rsvp-intro { font-size: 16px; }
-  .rsvp-form { gap: 19px; padding: 23px 18px; }
+  .rsvp-form { gap: 19px; padding: 35px 18px; }
+  .rsvp-form::before, .rsvp-form::after { width: 57px; height: 24px; opacity: .16; }
+  .rsvp-form::before { top: 8px; right: 8px; }
+  .rsvp-form::after { bottom: 8px; left: 8px; }
   .rsvp-choice { flex: 1 1 120px; }
   .rsvp-submit { width: 100%; }
 }
