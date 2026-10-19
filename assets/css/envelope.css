@@ -1,9 +1,9 @@
 /* Closed envelope → broken seal → open flap → raised invitation (4 seconds). */
-.intro { --envelope-width: min(92vw, 460px, 60svh); height: 100svh; min-height: 360px; overflow: hidden; position: relative; display: grid; place-items: center; isolation: isolate; background: radial-gradient(ellipse at 48% 42%, #fffdf7, #f4f0e8 65%, #eae3d7); }
-.intro.is-opening { min-height: max(100svh, calc(140px + var(--envelope-width) * 2.368)); }
+.intro { --envelope-width: min(92vw, 460px, 60vh); height: 100vh; min-height: 360px; overflow: hidden; position: relative; display: grid; place-items: center; isolation: isolate; background: radial-gradient(ellipse at 48% 42%, #fffdf7, #f4f0e8 65%, #eae3d7); }
+.intro.is-opening { min-height: max(100vh, calc(140px + var(--envelope-width) * 2.368)); }
 .intro::after { content: ''; position: absolute; inset: 0; z-index: 8; opacity: .09; pointer-events: none; background: url('../images/paper.svg'); }
 .intro > .eyebrow { position: absolute; top: max(20px, env(safe-area-inset-top)); font-size: clamp(8px, 1.5vw, 10px); }
-.scene { width: var(--envelope-width); aspect-ratio: 1.325; position: absolute; left: 50%; top: 50svh; transform: translate(-50%, calc(-50% + min(14svh, 100px))); perspective: 1400px; container-type: inline-size; transition: top 1s ease, transform 1s ease; }
+.scene { width: var(--envelope-width); aspect-ratio: 1.325; position: absolute; left: 50%; top: 50vh; transform: translate(-50%, calc(-50% + min(14vh, 100px))); perspective: 1400px; container-type: inline-size; transition: top 1s ease, transform 1s ease; }
 .is-opening .scene { top: calc(60px + var(--envelope-width) * 1.614); transform: translate(-50%, 0); }
 .envelope { width: 100%; height: 100%; position: relative; filter: drop-shadow(0 3px 2px #40251d30) drop-shadow(0 16px 17px #40251d35); }
 .envelope-back { position: absolute; inset: 0; clip-path: polygon(.2% .3%, 17% 0, 35% .2%, 58% 0, 79% .3%, 99.8% .1%, 100% 18%, 99.8% 43%, 100% 69%, 99.7% 99.8%, 76% 100%, 52% 99.7%, 28% 100%, .1% 99.8%, .3% 74%, 0 50%, .2% 24%); background: radial-gradient(ellipse at 50% 15%, #3f1e2270, transparent 65%), linear-gradient(135deg, #713b37, #96554b 55%, #7a403b); box-shadow: inset 0 0 18px #391a1d55; }
