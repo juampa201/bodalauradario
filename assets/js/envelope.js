@@ -19,8 +19,6 @@
     invitation.removeAttribute('aria-hidden');
     cue.hidden = false;
     nextSection.hidden = false;
-    const monasterySection = document.querySelector('.monastery-section');
-    if (monasterySection) monasterySection.hidden = false;
     const welcomeSection = document.querySelector('.welcome-section');
     if (welcomeSection) welcomeSection.hidden = false;
     const rsvpSection = document.querySelector('.rsvp-section');
