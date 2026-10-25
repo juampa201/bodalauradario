@@ -41,6 +41,8 @@
   height: 100%;
   object-fit: contain;
   transform: translateX(-7%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 90% at 50% 50%, #000 78%, transparent 100%);
+  mask-image: radial-gradient(ellipse 85% 90% at 50% 50%, #000 78%, transparent 100%);
 }
 @media (max-width: 700px) {
   .welcome-layout { grid-template-columns: 1fr; max-width: 460px; gap: 32px; }
