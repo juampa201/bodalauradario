@@ -24,7 +24,7 @@
     }
 
     const payload = new URLSearchParams();
-    ['guestName', 'companionName', 'children', 'busService', 'dietary', 'website']
+    ['guestName', 'companionName', 'children', 'busService', 'preWedding', 'dietary', 'website']
       .forEach((name) => payload.set(name, String(fields.get(name) || '').trim()));
 
     button.disabled = true;
