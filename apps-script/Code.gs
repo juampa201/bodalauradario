@@ -6,7 +6,8 @@ const HEADERS = [
   'Nombre y apellidos del acompañante',
   '¿Vienes con tus hijos?',
   'Servicio de autobús',
-  'Alergias, intolerancias o necesidades dietéticas especiales'
+  'Alergias, intolerancias o necesidades dietéticas especiales',
+  '¿Vendrás a la preboda?'
 ];
 const BUS_OPTIONS = [
   'Sí, a la ida y a la vuelta',
@@ -23,9 +24,10 @@ function doPost(e) {
   const companionName = clean_(data.companionName, 120);
   const children = String(data.children || '').trim();
   const busService = String(data.busService || '').trim();
+  const preWedding = String(data.preWedding || '').trim();
   const dietary = clean_(data.dietary, 1000);
 
-  if (!guestName || !['Sí', 'No'].includes(children) || !BUS_OPTIONS.includes(busService)) {
+  if (!guestName || !['Sí', 'No'].includes(children) || !BUS_OPTIONS.includes(busService) || !['Sí', 'No'].includes(preWedding)) {
     return text_('INVALID');
   }
 
@@ -34,12 +36,37 @@ function doPost(e) {
   try {
     const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
     const sheet = spreadsheet.getSheetByName(SHEET_NAME) || spreadsheet.insertSheet(SHEET_NAME);
-    if (sheet.getLastRow() === 0) sheet.appendRow(HEADERS);
-    sheet.appendRow([Utilities.formatDate(new Date(), 'Europe/Madrid', 'dd/MM/yyyy HH:mm:ss'), guestName, companionName, children, busService, dietary]);
+    ensureHeaders_(sheet);
+    const values = {
+      'Fecha de recepción (Madrid)': Utilities.formatDate(new Date(), 'Europe/Madrid', 'dd/MM/yyyy HH:mm:ss'),
+      'Nombre y apellidos': guestName,
+      'Nombre y apellidos del acompañante': companionName,
+      '¿Vienes con tus hijos?': children,
+      'Servicio de autobús': busService,
+      'Alergias, intolerancias o necesidades dietéticas especiales': dietary,
+      '¿Vendrás a la preboda?': preWedding
+    };
+    const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+    sheet.appendRow(headers.map((header) => values[String(header)] || ''));
   } finally {
     lock.releaseLock();
   }
   return text_('OK');
+}
+
+function ensureHeaders_(sheet) {
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow(HEADERS);
+    return;
+  }
+  const width = Math.max(sheet.getLastColumn(), 1);
+  const existing = sheet.getRange(1, 1, 1, width).getValues()[0].map(String);
+  HEADERS.forEach((header) => {
+    if (!existing.includes(header)) {
+      sheet.getRange(1, sheet.getLastColumn() + 1).setValue(header);
+      existing.push(header);
+    }
+  });
 }
 
 function doGet() {
