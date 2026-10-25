@@ -30,13 +30,17 @@
 .welcome-signature span { display: inline-block; margin-top: 7px; font-size: 25px; color: var(--color-ink); }
 .welcome-photo {
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 4;
+  margin: 0;
   overflow: hidden;
-  background: var(--color-paper);
-  border: 1px solid #bca07e40;
-  border-radius: 180px 180px 3px 3px;
+  background: transparent;
 }
-.welcome-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.welcome-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 @media (max-width: 700px) {
   .welcome-layout { grid-template-columns: 1fr; max-width: 460px; gap: 32px; }
   .welcome-photo { max-width: 360px; margin: 0 auto; }
