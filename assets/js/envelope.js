@@ -23,6 +23,7 @@
     if (welcomeSection) welcomeSection.hidden = false;
     const giftSection = document.querySelector('.gift-section');
     if (giftSection) giftSection.hidden = false;
+    document.querySelectorAll('.lodging-section, .restaurants-section').forEach(section => { section.hidden = false; });
     const rsvpSection = document.querySelector('.rsvp-section');
     if (rsvpSection) rsvpSection.hidden = false;
     document.body.classList.remove('is-locked');
