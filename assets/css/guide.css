@@ -12,11 +12,11 @@
 .guide-link{margin-top:auto;display:inline-block;padding:10px 22px;border:1px solid #a45b3e80;border-radius:999px;color:var(--color-ink);font:11px/1.4 Arial,sans-serif;letter-spacing:.11em;text-decoration:none;text-transform:uppercase;transition:background .2s}
 .guide-link:hover,.guide-link:focus-visible{background:#a45b3e12}
 .guide-restaurants{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;max-width:820px;margin:auto}
-.guide-restaurant{padding:22px 24px;border-radius:10px;background:var(--color-paper);border:1px solid #a45b3e24;position:relative;display:flex;flex-direction:column;align-items:flex-start}
-.guide-restaurant:before{content:"";position:absolute;top:16px;right:16px;width:33px;height:34px;background:url('../images/branch.svg') center/contain no-repeat;opacity:.16}
-.guide-restaurant h3{font:400 clamp(19px,2vw,23px)/1.4 Georgia,serif;margin:0 0 9px;color:var(--color-ink)}
-.guide-restaurant p{margin:0;color:var(--color-muted);font-size:15px;line-height:1.7}
-.guide-restaurant .guide-link{margin-top:20px;align-self:center}
+.guide-restaurant{padding:22px 24px;border-radius:10px;background:var(--color-paper);border:1px solid #a45b3e24;position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:12px;row-gap:8px;align-content:start;align-items:center}
+.guide-restaurant:before{content:"";position:absolute;bottom:9px;right:11px;width:30px;height:31px;background:url('../images/branch.svg') center/contain no-repeat;opacity:.1;pointer-events:none}
+.guide-restaurant h3{grid-column:1;grid-row:1;font:400 clamp(19px,2vw,22px)/1.35 Georgia,serif;margin:0;color:var(--color-ink)}
+.guide-restaurant p{grid-column:1/-1;grid-row:2;margin:0;color:var(--color-muted);font-size:15px;line-height:1.7}
+.guide-restaurant .guide-link{grid-column:2;grid-row:1;margin:0;align-self:center;white-space:nowrap;padding:7px 12px;font-size:10px;letter-spacing:.07em}
 .guide-restaurant:last-child{grid-column:1/-1;justify-self:center;width:min(100%,402px)}
 @media(max-width:760px){.guide-hotels{grid-template-columns:repeat(2,minmax(0,1fr))}.guide-hotel img{height:165px}}
 @media(max-width:550px){.guide-section{padding:55px 18px}.guide-hotels,.guide-restaurants{grid-template-columns:1fr;gap:16px}.guide-hotel img{height:205px}.guide-hotel-content{padding:20px}.guide-restaurant:last-child{grid-column:auto;width:100%}.guide-restaurant{padding:20px}}
