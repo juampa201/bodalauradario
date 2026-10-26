@@ -1,0 +1,71 @@
+/* Small, independent watercolor-style autumn accents. Deliberately sparse. */
+:root {
+  --color-accent: #a76343;
+  --color-muted: #927058;
+}
+#cuenta-atras.wedding-section::before {
+  top: 51%; left: clamp(3px, 3vw, 46px);
+  width: 52px; height: 65px;
+  background: url("../images/leaf-ochre.svg") center/contain no-repeat;
+  opacity: .62; transform: rotate(-20deg);
+}
+#cuenta-atras.wedding-section::after {
+  top: 76%; right: clamp(3px, 3vw, 42px);
+  width: 48px; height: 58px;
+  background: url("../images/leaf-russet.svg") center/contain no-repeat;
+  opacity: .58; transform: rotate(18deg);
+}
+#bienvenidos.welcome-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-bottom: clamp(88px, 11vw, 145px);
+}
+#bienvenidos.welcome-section::before {
+  content: ""; position: absolute; pointer-events: none;
+  top: 20%; left: clamp(6px, 4vw, 72px); width: 45px; height: 56px;
+  background: url("../images/leaf-russet.svg") center/contain no-repeat;
+  opacity: .55; transform: rotate(-24deg);
+}
+#bienvenidos.welcome-section::after {
+  content: ""; position: absolute; pointer-events: none;
+  bottom: 16px; left: 50%; width: 175px; height: 54px;
+  transform: translateX(-50%);
+  background: url("../images/three-autumn-leaves.svg") center/contain no-repeat;
+  opacity: .72;
+}
+#bienvenidos .welcome-layout { position: relative; z-index: 1; }
+#regalo.gift-section { position: relative; isolation: isolate; }
+#regalo.gift-section::before {
+  content: ""; position: absolute; pointer-events: none;
+  top: 12px; right: clamp(8px, 5vw, 85px);
+  width: 43px; height: 60px;
+  background: url("../images/leaf-olive.svg") center/contain no-repeat;
+  opacity: .5; transform: rotate(21deg);
+}
+#regalo .gift-card { position: relative; z-index: 1; }
+#alojamiento.lodging-section,
+#restaurantes.restaurants-section { position: relative; isolation: isolate; overflow: hidden; }
+#alojamiento.lodging-section::before {
+  content: ""; position: absolute; pointer-events: none;
+  top: 32px; right: clamp(4px, 5vw, 85px); width: 43px; height: 55px;
+  background: url("../images/leaf-ochre.svg") center/contain no-repeat;
+  opacity: .5; transform: rotate(25deg);
+}
+#restaurantes.restaurants-section::before {
+  content: ""; position: absolute; pointer-events: none;
+  bottom: 28px; left: clamp(5px, 5vw, 75px); width: 45px; height: 58px;
+  background: url("../images/leaf-russet.svg") center/contain no-repeat;
+  opacity: .48; transform: rotate(-28deg);
+}
+#alojamiento .guide-inner, #restaurantes .guide-inner { position: relative; z-index: 1; }
+@media (max-width: 600px) {
+  #cuenta-atras.wedding-section::before { top: 53%; left: 0; width: 31px; height: 39px; opacity: .36; }
+  #cuenta-atras.wedding-section::after { top: 79%; right: 1px; width: 32px; height: 41px; opacity: .34; }
+  #bienvenidos.welcome-section { padding-bottom: 94px; }
+  #bienvenidos.welcome-section::before { top: 18px; left: 7px; width: 29px; height: 38px; opacity: .36; }
+  #bienvenidos.welcome-section::after { bottom: 14px; width: 142px; height: 44px; opacity: .65; }
+  #regalo.gift-section::before { top: 7px; right: 6px; width: 30px; height: 39px; opacity: .38; }
+  #alojamiento.lodging-section::before { top: 8px; right: 5px; width: 32px; height: 40px; opacity: .36; }
+  #restaurantes.restaurants-section::before { bottom: 9px; left: 5px; width: 31px; height: 39px; opacity: .33; }
+}
