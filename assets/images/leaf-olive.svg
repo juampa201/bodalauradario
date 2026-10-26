@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115 160" fill="none">
-<defs><linearGradient id="a" x1="12" y1="27" x2="104" y2="132" gradientUnits="userSpaceOnUse"><stop stop-color="#CAC18E"/><stop offset=".48" stop-color="#AAA875"/><stop offset="1" stop-color="#A97866"/></linearGradient><radialGradient id="r"><stop stop-color="#EECBA0" stop-opacity=".8"/><stop offset="1" stop-color="#EECBA0" stop-opacity="0"/></radialGradient><filter id="w" x="-8%" y="-8%" width="116%" height="116%"><feTurbulence type="fractalNoise" baseFrequency=".07" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.2"/></filter></defs>
-<path d="M56 113 Q55 132 64 151" stroke="#9D7556" stroke-width="2.7" stroke-linecap="round"/>
-<g filter="url(#w)"><path d="M56 10 C17 29 13 80 54 115 C96 87 97 40 56 10Z" fill="url(#a)" stroke="#8C765B" stroke-opacity=".55" stroke-width="1.2"/><ellipse cx="43" cy="54" rx="31" ry="36" fill="url(#r)" opacity=".52"/></g>
-<g stroke="#856F53" stroke-width="1.25" opacity=".6" stroke-linecap="round"><path d="M55 112 56 19"/><path d="M55 54 34 43M55 73 27 64M56 93 40 86M56 49 78 39M55 69 85 59M55 90 78 80"/></g>
-</svg>
