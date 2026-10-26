@@ -1,0 +1,206 @@
+/* Organic autumn illustration layout · Laura & Darío
+   Stable art-directed scatter, deliberately varied by section, height and size.
+   Reuses the transparent watercolor leaf and pinecone atlases; no new downloads. */
+
+/* The old one-at-every-corner system created a visible alternating pattern.
+   Remove those marks, including the repeated motif in each restaurant card. */
+#cuenta-atras.wedding-section::before,
+#cuenta-atras.wedding-section::after,
+#bienvenidos.welcome-section::before,
+#bienvenidos.welcome-section::after,
+#regalo.gift-section::before,
+#regalo.gift-section::after,
+#regalo .gift-card::before,
+#regalo .gift-card::after,
+#alojamiento.lodging-section::before,
+#alojamiento.lodging-section::after,
+#restaurantes.restaurants-section::before,
+#restaurantes.restaurants-section::after,
+#confirmacion.rsvp-section::before,
+#confirmacion.rsvp-section::after,
+#confirmacion .rsvp-container::after,
+#confirmacion .rsvp-form::before,
+#confirmacion .rsvp-form::after,
+#restaurantes .guide-restaurant::before {
+  content: none;
+  display: none;
+}
+
+/* Decorations are background ornaments, not part of the layout or tab order.
+   Some sections intentionally have no ornaments at all. */
+.organic-decor {
+  position: absolute;
+  display: block;
+  width: 62px;
+  height: 67px;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+  background-repeat: no-repeat;
+  transform-origin: center;
+}
+.organic-decor--leaf-maple,
+.organic-decor--leaf-oak,
+.organic-decor--leaf-ginkgo,
+.organic-decor--leaf-pair,
+.organic-decor--leaf-trio {
+  background-image: url("../images/autumn-atlas.png");
+  background-size: 300% 200%;
+}
+.organic-decor--leaf-maple { background-position: 0% 0%; }
+.organic-decor--leaf-oak { background-position: 50% 0%; }
+.organic-decor--leaf-ginkgo { background-position: 100% 0%; }
+.organic-decor--leaf-pair { background-position: 0% 100%; }
+.organic-decor--leaf-trio { background-position: 50% 100%; }
+.organic-decor--cone-single,
+.organic-decor--cone-pair,
+.organic-decor--cone-triple {
+  background-image: url("../images/pinecones-watercolor-atlas.webp");
+  background-size: 300% 100%;
+}
+.organic-decor--cone-single { background-position: 0% 50%; }
+.organic-decor--cone-pair { background-position: 50% 50%; }
+.organic-decor--cone-triple { background-position: 100% 50%; }
+
+/* Uneven visual rhythm: 1 / 4 / 1 / 0 / 3 / 1 / 3 ornaments, respectively.
+   Positions are intentionally not a top-left/bottom-right alternation. */
+.organic-decor--intro-lone {
+  left: 9%; top: 24%; width: 63px; height: 69px;
+  opacity: .52; transform: rotate(38deg);
+}
+.organic-decor--monastery-crown {
+  right: 12%; top: 7%; width: 61px; height: 66px;
+  opacity: .47; transform: rotate(-34deg);
+}
+.organic-decor--monastery-mid {
+  left: 3.5%; top: 39%; width: 83px; height: 83px;
+  opacity: .43; transform: rotate(18deg);
+}
+.organic-decor--monastery-low {
+  right: 6%; top: 67%; width: 50px; height: 55px;
+  opacity: .44; transform: rotate(-21deg);
+}
+.organic-decor--monastery-tail {
+  left: 21%; bottom: 1%; width: 44px; height: 51px;
+  opacity: .39; transform: rotate(57deg);
+}
+.organic-decor--story-pine {
+  right: 4%; top: 48%; width: 91px; height: 91px;
+  opacity: .49; transform: rotate(-28deg);
+}
+.organic-decor--hotels-high {
+  right: 8%; top: 5%; width: 73px; height: 73px;
+  opacity: .46; transform: rotate(39deg);
+}
+.organic-decor--hotels-side {
+  left: 2.5%; top: 59%; width: 78px; height: 83px;
+  opacity: .39; transform: rotate(-16deg);
+}
+.organic-decor--hotels-tail {
+  right: 20%; bottom: 1%; width: 43px; height: 49px;
+  opacity: .41; transform: rotate(64deg);
+}
+.organic-decor--dining-leaf {
+  left: 6%; top: 53%; width: 65px; height: 70px;
+  opacity: .49; transform: rotate(-31deg);
+}
+.organic-decor--rsvp-high {
+  right: 4%; top: 12%; width: 66px; height: 66px;
+  opacity: .43; transform: rotate(24deg);
+}
+.organic-decor--rsvp-side {
+  left: 3%; top: 56%; width: 67px; height: 73px;
+  opacity: .42; transform: rotate(51deg);
+}
+.organic-decor--rsvp-low {
+  right: 9%; bottom: 6%; width: 42px; height: 50px;
+  opacity: .35; transform: rotate(-47deg);
+}
+
+/* Keep interactive contents and readable copy above nearby illustrations. */
+#cuenta-atras > :not(.organic-decor),
+#bienvenidos > :not(.organic-decor),
+#alojamiento > :not(.organic-decor),
+#restaurantes > :not(.organic-decor),
+#confirmacion > :not(.organic-decor) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Bring sections closer, without compressing individual cards or the invitation. */
+#cuenta-atras.wedding-section {
+  padding-top: clamp(28px, 4vw, 48px);
+  padding-bottom: clamp(29px, 4vw, 49px);
+}
+#cuenta-atras .countdown-heading { margin-top: clamp(30px, 4.5vw, 42px); }
+#bienvenidos.welcome-section {
+  padding-top: clamp(46px, 6vw, 82px);
+  padding-bottom: clamp(50px, 6.5vw, 86px);
+}
+#bienvenidos .welcome-layout { gap: clamp(24px, 5vw, 62px); }
+#regalo.gift-section {
+  padding-top: clamp(30px, 4.5vw, 57px);
+  padding-bottom: clamp(30px, 4.5vw, 57px);
+}
+#alojamiento.guide-section,
+#restaurantes.guide-section {
+  padding-top: clamp(38px, 5.5vw, 72px);
+  padding-bottom: clamp(38px, 5.5vw, 72px);
+}
+.guide-heading { margin-bottom: 28px; }
+#confirmacion.rsvp-section {
+  padding-top: clamp(40px, 5.5vw, 75px);
+  padding-bottom: clamp(42px, 5.5vw, 78px);
+}
+#confirmacion .rsvp-intro { margin-bottom: 28px; }
+.spotify-section { padding-top: 25px; }
+
+/* Mobile: scattered against free edges / gaps, never over the copy. */
+@media (max-width: 700px) {
+  .organic-decor--intro-lone {
+    top: 21%; left: 2%; width: 36px; height: 39px; opacity: .4;
+  }
+  .organic-decor--monastery-crown {
+    top: 25%; right: 0; width: 35px; height: 38px; opacity: .38;
+  }
+  .organic-decor--monastery-mid {
+    top: 48%; left: 0; width: 46px; height: 46px; opacity: .35;
+  }
+  .organic-decor--monastery-low {
+    top: 85%; right: 0; width: 30px; height: 33px; opacity: .39;
+  }
+  .organic-decor--monastery-tail { display: none; }
+  .organic-decor--story-pine {
+    top: 53%; right: 0; width: 52px; height: 52px; opacity: .34;
+  }
+  .organic-decor--hotels-high {
+    top: 2%; right: 0; width: 45px; height: 45px; opacity: .34;
+  }
+  .organic-decor--hotels-side {
+    top: 45%; left: 0; width: 42px; height: 45px; opacity: .3;
+  }
+  .organic-decor--hotels-tail {
+    bottom: 1%; right: 9%; width: 34px; height: 37px; opacity: .36;
+  }
+  .organic-decor--dining-leaf {
+    top: 28%; left: 0; width: 38px; height: 42px; opacity: .33;
+  }
+  .organic-decor--rsvp-high {
+    top: 4%; right: 0; width: 39px; height: 39px; opacity: .35;
+  }
+  .organic-decor--rsvp-side {
+    top: 61%; left: 0; width: 38px; height: 42px; opacity: .32;
+  }
+  .organic-decor--rsvp-low {
+    bottom: 2%; right: 0; width: 31px; height: 36px; opacity: .31;
+  }
+  #cuenta-atras.wedding-section { padding-block: 26px 34px; }
+  #cuenta-atras .countdown-heading { margin-top: 33px; }
+  #bienvenidos.welcome-section { padding-block: 43px 49px; }
+  #bienvenidos .welcome-layout { gap: 23px; }
+  #regalo.gift-section { padding-block: 28px 33px; }
+  #alojamiento.guide-section,
+  #restaurantes.guide-section { padding-block: 36px 39px; }
+  #confirmacion.rsvp-section { padding-block: 40px 48px; }
+  .guide-heading { margin-bottom: 25px; }
+}
