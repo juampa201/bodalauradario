@@ -118,11 +118,11 @@
 }
 
 /* Keep interactive contents and readable copy above nearby illustrations. */
-#cuenta-atras > :not(.organic-decor),
-#bienvenidos > :not(.organic-decor),
-#alojamiento > :not(.organic-decor),
-#restaurantes > :not(.organic-decor),
-#confirmacion > :not(.organic-decor) {
+#cuenta-atras > :not(.decoration-layer),
+#bienvenidos > :not(.decoration-layer),
+#alojamiento > :not(.decoration-layer),
+#restaurantes > :not(.decoration-layer),
+#confirmacion > :not(.decoration-layer) {
   position: relative;
   z-index: 1;
 }
@@ -203,4 +203,91 @@
   #restaurantes.guide-section { padding-block: 36px 39px; }
   #confirmacion.rsvp-section { padding-block: 40px 48px; }
   .guide-heading { margin-bottom: 25px; }
+}
+
+/* FIX: decorations are true overlays, never flex/grid items.
+   The obsolete pinecones.css once forced every non-pinecone direct child
+   (including leaves) back to position:relative. That stylesheet is now unlinked. */
+.intro, #cuenta-atras, #bienvenidos, #regalo, #alojamiento, #restaurantes, #confirmacion {
+  position: relative; isolation: isolate; overflow: hidden;
+}
+.decoration-layer {
+  position: absolute !important;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: block;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  contain: layout paint;
+}
+.decoration-layer .organic-decor {
+  position: absolute !important;
+  display: block;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+/* The previous SVG decorations are also disabled, avoiding visual repetition. */
+#cuenta-atras.wedding-section::before,
+#cuenta-atras.wedding-section::after,
+#regalo .gift-card::before, #regalo .gift-card::after,
+#confirmacion .rsvp-container::after,
+#confirmacion .rsvp-form::before, #confirmacion .rsvp-form::after,
+#restaurantes .guide-restaurant::before { content: none; display: none; }
+
+/* Floating ornaments, with irregular positions, sizes, and visual pauses. */
+.organic-decor--intro-lone { left: 11%; top: 19%; width: 51px; height: 59px; }
+.organic-decor--monastery-crown { right: 16%; top: 9%; width: 52px; height: 58px; }
+.organic-decor--monastery-mid { left: 3%; top: 44%; width: 72px; height: 72px; }
+.organic-decor--monastery-low { right: 5%; top: 68%; width: 43px; height: 49px; }
+.organic-decor--monastery-tail { left: 24%; bottom: 5%; width: 38px; height: 43px; }
+.organic-decor--story-pine { right: 6%; top: 62%; width: 73px; height: 73px; }
+.organic-decor--hotels-high { right: 8%; top: 23%; width: 61px; height: 61px; transform: rotate(-27deg); }
+.organic-decor--hotels-side { left: 4%; top: 67%; width: 64px; height: 68px; transform: rotate(31deg); }
+.organic-decor--hotels-tail { right: 27%; bottom: 6%; width: 39px; height: 44px; transform: rotate(-42deg); }
+.organic-decor--dining-leaf { right: 4%; left: auto; top: 43%; width: 52px; height: 56px; transform: rotate(26deg); }
+.organic-decor--rsvp-high { right: 3%; top: 25%; width: 54px; height: 54px; }
+.organic-decor--rsvp-side { left: 6%; top: 65%; width: 53px; height: 59px; }
+.organic-decor--rsvp-low { right: 16%; bottom: 5%; width: 40px; height: 46px; }
+
+/* Noticeably closer section transitions; no change to text or form spacing. */
+#cuenta-atras.wedding-section { padding-block: clamp(25px,3.5vw,43px) clamp(27px,3.8vw,47px); }
+#bienvenidos.welcome-section { padding-block: clamp(38px,5.3vw,70px) clamp(34px,4.9vw,59px); }
+#regalo.gift-section { padding-block: clamp(24px,3.5vw,43px) clamp(14px,2.3vw,27px); }
+#alojamiento.guide-section { padding-block: clamp(20px,2.8vw,35px) clamp(29px,3.9vw,47px); }
+#restaurantes.guide-section { padding-block: clamp(27px,3.6vw,48px) clamp(30px,4vw,49px); }
+#confirmacion.rsvp-section { padding-block: clamp(31px,4.5vw,56px) clamp(36px,5vw,68px); }
+#bienvenidos.welcome-section { padding-bottom: clamp(34px,4.9vw,59px); }
+#bienvenidos .welcome-layout { gap: clamp(23px,4.7vw,54px); }
+#cuenta-atras .countdown-heading { margin-top: clamp(28px,4vw,39px); }
+.guide-heading { margin-bottom: 24px; }
+
+@media (max-width: 700px) {
+  #cuenta-atras.wedding-section { padding-block: 24px 29px; }
+  #bienvenidos.welcome-section { padding-block: 35px 37px; }
+  #regalo.gift-section { padding-block: 24px 12px; }
+  #alojamiento.guide-section { padding: 17px 18px 31px; }
+  #restaurantes.guide-section { padding: 28px 18px 33px; }
+  #confirmacion.rsvp-section { padding-block: 34px 43px; }
+  #bienvenidos .welcome-layout { gap: 22px; }
+  .guide-heading { margin-bottom: 22px; }
+  .organic-decor--intro-lone { top: 18%; left: 2%; width: 33px; height: 37px; }
+  .organic-decor--monastery-crown { top: 23%; right: 1%; width: 33px; height: 36px; }
+  .organic-decor--monastery-mid { top: 48%; left: 0; width: 41px; height: 41px; }
+  .organic-decor--monastery-low { top: 83%; right: 0; width: 31px; height: 34px; }
+  .organic-decor--monastery-tail { display: none; }
+  .organic-decor--story-pine { top: 69%; right: 0; width: 47px; height: 47px; }
+  .organic-decor--hotels-high { top: 28%; right: 1%; width: 36px; height: 36px; }
+  .organic-decor--hotels-side { top: 66%; left: 0; width: 42px; height: 44px; }
+  .organic-decor--hotels-tail { bottom: 3%; right: 18%; width: 31px; height: 34px; }
+  .organic-decor--dining-leaf { top: 40%; right: 1%; width: 35px; height: 39px; }
+  .organic-decor--rsvp-high { top: 25%; right: 1%; width: 38px; height: 38px; }
+  .organic-decor--rsvp-side { top: 64%; left: 0; width: 36px; height: 39px; }
+  .organic-decor--rsvp-low { bottom: 3%; right: 11%; width: 30px; height: 34px; }
 }
