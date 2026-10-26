@@ -43,6 +43,8 @@
   object-position: center center;
   margin-inline: auto;
   transform: none;
+  /* Integrates the artwork's pale paper background with the site's own background. */
+  mix-blend-mode: multiply;
   -webkit-mask-image: radial-gradient(ellipse 85% 90% at 50% 50%, #000 78%, transparent 100%);
   mask-image: radial-gradient(ellipse 85% 90% at 50% 50%, #000 78%, transparent 100%);
 }
