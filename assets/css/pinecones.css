@@ -1,0 +1,72 @@
+/* Hand-painted pinecones: transparent, optimized WebP sprite with three variations.
+   Decoration stays on the margins; existing leaf illustrations and content remain unchanged. */
+.pinecone-decor {
+  position: absolute;
+  z-index: 0;
+  display: block;
+  width: 86px;
+  height: 86px;
+  background: url("../images/pinecones-watercolor-atlas.webp") no-repeat 0% 50% / 300% 100%;
+  pointer-events: none;
+  user-select: none;
+  opacity: .54;
+}
+.pinecone-decor--single { background-position: 0% 50%; }
+.pinecone-decor--pair { background-position: 50% 50%; }
+.pinecone-decor--triple { background-position: 100% 50%; }
+
+/* Each accent uses a different position and scale, leaving the text and buttons clear. */
+.pinecone-decor--intro {
+  right: 3%; bottom: 14%;
+  width: 77px; height: 77px;
+  opacity: .47; transform: rotate(-18deg);
+}
+.pinecone-decor--monastery {
+  right: 1.5%; top: 61%;
+  width: 94px; height: 94px;
+  opacity: .42; transform: rotate(12deg);
+}
+.pinecone-decor--welcome {
+  right: 3%; bottom: 7%;
+  width: 74px; height: 74px;
+  opacity: .5; transform: rotate(16deg);
+}
+.pinecone-decor--gift {
+  left: 2%; bottom: 3%;
+  width: 84px; height: 84px;
+  opacity: .45; transform: rotate(-17deg);
+}
+.pinecone-decor--lodging {
+  left: 1.5%; top: 4%;
+  width: 100px; height: 100px;
+  opacity: .45; transform: rotate(12deg);
+}
+.pinecone-decor--restaurants {
+  right: 2%; bottom: 2%;
+  width: 76px; height: 76px;
+  opacity: .48; transform: rotate(23deg);
+}
+.pinecone-decor--rsvp {
+  right: 2.5%; top: 3%;
+  width: 88px; height: 88px;
+  opacity: .44; transform: rotate(-12deg);
+}
+/* Keep every decoration behind cards, form, text, and interactive content. */
+#cuenta-atras > :not(.pinecone-decor),
+#bienvenidos > :not(.pinecone-decor),
+#regalo > :not(.pinecone-decor),
+#alojamiento > :not(.pinecone-decor),
+#restaurantes > :not(.pinecone-decor),
+#confirmacion > :not(.pinecone-decor) {
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 700px) {
+  .pinecone-decor--intro { right: 2px; bottom: 15%; width: 47px; height: 47px; opacity: .42; }
+  .pinecone-decor--monastery { right: 1px; top: 67%; width: 49px; height: 49px; opacity: .38; }
+  .pinecone-decor--welcome { right: 3px; bottom: 7px; width: 50px; height: 50px; opacity: .43; }
+  .pinecone-decor--gift { left: 2px; bottom: 3px; width: 45px; height: 45px; opacity: .4; }
+  .pinecone-decor--lodging { left: 3px; top: 6px; width: 52px; height: 52px; opacity: .39; }
+  .pinecone-decor--restaurants { right: 3px; bottom: 4px; width: 47px; height: 47px; opacity: .41; }
+  .pinecone-decor--rsvp { right: 3px; top: 10px; width: 51px; height: 51px; opacity: .39; }
+}
