@@ -20,3 +20,12 @@
 .guide-restaurant:last-child{grid-column:1/-1;justify-self:center;width:min(100%,402px)}
 @media(max-width:760px){.guide-hotels{grid-template-columns:repeat(2,minmax(0,1fr))}.guide-hotel img{height:165px}}
 @media(max-width:550px){.guide-section{padding:55px 18px}.guide-hotels,.guide-restaurants{grid-template-columns:1fr;gap:16px}.guide-hotel img{height:205px}.guide-hotel-content{padding:20px}.guide-restaurant:last-child{grid-column:auto;width:100%}.guide-restaurant{padding:20px}}
+
+/* Prewedding teaser: shared typography and compact section transitions. */
+#preboda.prewedding-section{padding:clamp(28px,4vw,48px) 20px}
+.prewedding-section .guide-inner{max-width:720px}
+.prewedding-section .guide-heading{margin-bottom:0}
+.prewedding-section .prewedding-lead{color:var(--color-ink)}
+.prewedding-section .prewedding-copy{margin-top:16px}
+.prewedding-signoff{margin:22px 0 0;color:var(--color-ink);font-size:clamp(17px,2vw,20px);line-height:1.6}
+@media(max-width:700px){#preboda.prewedding-section{padding:28px 22px 30px}}
