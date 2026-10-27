@@ -291,3 +291,25 @@
   .organic-decor--rsvp-side { top: 64%; left: 0; width: 36px; height: 39px; }
   .organic-decor--rsvp-low { bottom: 3%; right: 11%; width: 30px; height: 34px; }
 }
+
+/* Section endings: scattered watercolor accents, entirely outside document flow. */
+#preboda { position: relative; isolation: isolate; overflow: hidden; }
+#regalo > :not(.decoration-layer),
+#preboda > :not(.decoration-layer) { position: relative; z-index: 1; }
+.decoration-layer .organic-decor--ending {
+  top: auto;
+  right: auto;
+  left: var(--end-x);
+  bottom: var(--end-bottom);
+  width: var(--end-width);
+  height: var(--end-height);
+  opacity: var(--end-opacity);
+  transform: translateX(-50%) rotate(var(--end-rotation));
+}
+@media (max-width: 700px) {
+  .decoration-layer .organic-decor--ending {
+    width: calc(var(--end-width) * .72);
+    height: calc(var(--end-height) * .72);
+    bottom: max(1px, calc(var(--end-bottom) * .6));
+  }
+}
