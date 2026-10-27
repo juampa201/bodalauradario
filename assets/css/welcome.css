@@ -30,7 +30,7 @@
 .welcome-signature span { display: inline-block; margin-top: 7px; font-size: 25px; color: var(--color-ink); }
 .welcome-photo {
   width: 100%;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 1299 / 1211;
   margin: 0;
   overflow: hidden;
   background: transparent;
@@ -43,10 +43,7 @@
   object-position: center center;
   margin-inline: auto;
   transform: none;
-  /* Integrates the artwork's pale paper background with the site's own background. */
-  mix-blend-mode: multiply;
-  -webkit-mask-image: radial-gradient(ellipse 85% 90% at 50% 50%, #000 78%, transparent 100%);
-  mask-image: radial-gradient(ellipse 85% 90% at 50% 50%, #000 78%, transparent 100%);
+  /* The watercolor asset already includes feathered alpha transparency. */
 }
 @media (max-width: 700px) {
   .welcome-layout { grid-template-columns: 1fr; max-width: 460px; gap: 32px; }
