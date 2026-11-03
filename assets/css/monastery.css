@@ -55,3 +55,10 @@
   .wedding-date { margin-top: 20px; }
   .wedding-section .countdown { margin-top: 30px; }
 }
+
+/* Visible directions beneath the watercolor monastery illustration. */
+.monastery-maps { margin: 10px 0 0; text-align: center; }
+.monastery-maps a { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border: 1px solid #a45b3e70; border-radius: 999px; background: #fffaf0b8; color: var(--color-ink); text-decoration: none; font: 400 14px/1.5 Georgia, 'Times New Roman', serif; transition: background .2s, border-color .2s; }
+.monastery-maps a:hover, .monastery-maps a:focus-visible { background: #fffaf0; border-color: var(--color-accent); }
+.monastery-maps + .countdown-heading { margin-top: 35px; }
+@media (max-width: 600px) { .monastery-maps { margin-top: 8px; } .monastery-maps + .countdown-heading { margin-top: 30px; } }

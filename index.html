@@ -25,7 +25,6 @@
   <script src="assets/js/envelope.js" defer></script>
   <script src="assets/js/gift.js" defer></script>
   <script src="assets/js/rsvp.js" defer></script>
-  <script src="assets/js/music.js" defer></script>
   <script src="assets/js/spotify.js" defer></script>
   <script src="https://open.spotify.com/embed/iframe-api/v1" defer></script>
 </head>
@@ -76,6 +75,7 @@
       <figure class="monastery-photo">
         <img src="assets/images/monasterio-ilustracion.webp" alt="Ilustración en acuarela del claustro del Monasterio de San Clodio, con algunos detalles otoñales dibujados" width="1400" height="788" loading="lazy" decoding="async">
       </figure>
+      <p class="monastery-maps"><a href="https://www.google.com/maps/search/?api=1&amp;query=Eurostars%20Monasterio%20de%20San%20Clodio%2C%20Leiro%2C%20Ourense" target="_blank" rel="noopener noreferrer" aria-label="Cómo llegar al Eurostars Monasterio de San Clodio en Google Maps">Cómo llegar <span aria-hidden="true">↗️</span></a></p>
       <div class="countdown-heading">
         <p class="eyebrow eyebrow--inline">La cuenta atrás para nuestro sí</p>
         <h2 id="countdown-title">Cada vez queda menos</h2>
@@ -137,9 +137,13 @@
           <h2 id="lodging-title">Recomendaciones de alojamiento</h2>
           <p class="guide-intro">Os dejamos algunas opciones para alojaros en Ourense y disfrutar de estos días juntos.</p>
         </header>
-        <div class="guide-hotels"><article class="guide-hotel"><img src="https://ak-d.tripcdn.com/images/1mc5s12000j2545p58552_R_960_660_R5_D.jpg" alt="Hotel Barceló Ourense" loading="lazy" decoding="async"><div class="guide-hotel-content"><h3>Hotel Barceló Ourense</h3><a class="guide-link" href="https://www.barcelo.com/es-es/barcelo-ourense/" target="_blank" rel="noopener noreferrer">Visitar web</a></div></article>
+        <aside class="lodging-alert" role="note" aria-labelledby="lodging-alert-title">
+          <h3 id="lodging-alert-title">¡Atención, navegantes (y futuros invitados)! ✈️🏨</h3>
+          <p>Resulta que el mismo fin de semana de nuestra boda hay un congreso en Ourense y la ciudad promete estar animadísima. Traducción: <strong>¡no lo dejéis para el final!</strong> Os recomendamos buscar alojamiento y reservar cuanto antes para encontrar los mejores sitios.</p>
+        </aside>
+        <div class="guide-hotels"><article class="guide-hotel"><img src="https://ak-d.tripcdn.com/images/1mc5s12000j2545p58552_R_960_660_R5_D.jpg" alt="Hotel Barceló Ourense" loading="lazy" decoding="async"><div class="guide-hotel-content"><h3>Hotel Barceló Ourense</h3><div class="guide-discount"><span>5% de descuento</span><span>Código: <strong>INVITADOSB27</strong></span></div><a class="guide-link" href="https://www.barcelo.com/es-es/barcelo-ourense/" target="_blank" rel="noopener noreferrer">Visitar web</a></div></article>
 <article class="guide-hotel"><img src="https://www.carrishoteles.com/wp-content/uploads/2022/10/hotel-carris-cardenal-quevedo.jpg" alt="Hotel Carrís Cardenal Quevedo" loading="lazy" decoding="async"><div class="guide-hotel-content"><h3>Hotel Carrís Cardenal Quevedo</h3><a class="guide-link" href="https://www.carrishoteles.com/es/hotel-carris-cardenal-quevedo/" target="_blank" rel="noopener noreferrer">Visitar web</a></div></article>
-<article class="guide-hotel"><img src="https://morar-apartments.galiciatophotels.com/data/Photos/OriginalPhoto/13142/1314250/1314250573/morar-ourense-ourense-photo-1.JPEG" alt="Morar Apartments Ourense" loading="lazy" decoding="async"><div class="guide-hotel-content"><h3>Morar Apartments Ourense</h3><a class="guide-link" href="https://ourense.morarapartments.com/" target="_blank" rel="noopener noreferrer">Visitar web</a></div></article>
+<article class="guide-hotel"><img src="https://morar-apartments.galiciatophotels.com/data/Photos/OriginalPhoto/13142/1314250/1314250573/morar-ourense-ourense-photo-1.JPEG" alt="Morar Apartments Ourense" loading="lazy" decoding="async"><div class="guide-hotel-content"><h3>Morar Apartments Ourense</h3><div class="guide-discount"><span>10% de descuento</span><span>Código: <strong>LYDOCT27</strong></span></div><a class="guide-link" href="https://ourense.morarapartments.com/" target="_blank" rel="noopener noreferrer">Visitar web</a></div></article>
 <article class="guide-hotel"><img src="https://www.turismo.gal/osdam/filestore/2/2/6/0/3_67b37ce08ded35f/22603scr_ad2dedf2ced366b.jpg" alt="Hotel NH Ourense" loading="lazy" decoding="async"><div class="guide-hotel-content"><h3>Hotel NH Ourense</h3><a class="guide-link" href="https://www.nh-hotels.com/es/hotel/nh-ourense" target="_blank" rel="noopener noreferrer">Visitar web</a></div></article>
 <article class="guide-hotel"><img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/400784043.jpg?k=24f983c3f7101e87c5a0ee1d1a583441f57388af9261c0a5d42dafd968184704&amp;o=" alt="IMI Hotel & Spa" loading="lazy" decoding="async"><div class="guide-hotel-content"><h3>IMI Hotel & Spa</h3><a class="guide-link" href="https://imihotel.com/" target="_blank" rel="noopener noreferrer">Visitar web</a></div></article></div>
       </div>
@@ -243,17 +247,16 @@
         </header>
       </div>
     </section>
-    <footer class="spotify-section" aria-label="Thinking Out Loud de Ed Sheeran" hidden>
+    <footer class="spotify-section" aria-label="Photograph de Ed Sheeran" hidden>
       <div class="spotify-player">
         <div id="spotify-embed">
-          <iframe title="Thinking Out Loud — Ed Sheeran, Spotify" src="https://open.spotify.com/embed/track/2NR99tTHkakE63qMMnkgZV" width="100%" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>
+          <iframe title="Photograph — Ed Sheeran, Spotify" src="https://open.spotify.com/embed/track/1HNkqx9Ahdgi1Ixy2xkKkL" width="100%" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>
         </div>
-        <a href="https://open.spotify.com/track/2NR99tTHkakE63qMMnkgZV" target="_blank" rel="noopener noreferrer">Abrir en Spotify ↗</a>
+        <a href="https://open.spotify.com/track/1HNkqx9Ahdgi1Ixy2xkKkL" target="_blank" rel="noopener noreferrer">Abrir en Spotify ↗</a>
       </div>
     </footer>
   </main>
-  <button class="music-toggle" type="button" hidden aria-label="Reproducir música" aria-pressed="false">Música <span aria-hidden="true">♫</span></button>
-  <audio id="wedding-music" preload="none" loop></audio>
+  <button class="music-toggle" type="button" hidden aria-label="Reproducir Photograph de Ed Sheeran" aria-pressed="false">Escuchar música <span aria-hidden="true">♫</span></button>
   <noscript><style>body.is-locked{overflow:auto}.intro{display:none}.countdown-section[hidden]{display:flex!important}.welcome-section[hidden]{display:block!important}</style><p class="noscript-message">Laura &amp; Darío · Nos casamos el 2 de octubre de 2027 a las 13:00 en el Monasterio de San Clodio, Leiro, Ourense. Activa JavaScript para abrir la invitación y ver la cuenta atrás.</p></noscript>
 </body>
 </html>
