@@ -15,6 +15,9 @@
   let playing = false;
   let prepared = false;
   let sought = false;
+  let loopArmed = false;
+  let loopPending = false;
+  let lastPlayingPosition = 0;
 
   function syncButton(isPlaying) {
     playing = isPlaying;
@@ -52,12 +55,40 @@
       embed.addListener('playback_update', (event) => {
         if (!event || !event.data) return;
         const state = event.data;
+        const position = Number(state.position);
+        const duration = Number(state.duration);
         syncButton(!state.isPaused);
-        // Some clients ignore startAt for tracks. Seek once if playback began at 0.
-        if (!sought && !state.isPaused && Number(state.position) < 10000) {
+
+        // Only the very first playback begins at 00:14. Replays must start at 00:00.
+        if (!sought && !state.isPaused && position < 10000) {
           sought = true;
           try { embed.seek(START_SECONDS); } catch (_) { /* Unsupported by this client. */ }
         }
+
+        if (!state.isPaused && position > 14000) {
+          loopArmed = true;
+          lastPlayingPosition = position;
+        }
+
+        // Spotify has no dedicated "ended" event. Detect completion via its
+        // playback position and restart (not loadEntity(startAt=14)).
+        const finishedAtEnd = Number.isFinite(duration) && duration > 0
+          && Number.isFinite(position) && position >= duration - 1200;
+        const resetAfterEnd = state.isPaused && duration > 0 && position < 1500
+          && lastPlayingPosition >= duration - 2000;
+        if (requestedPlay && loopArmed && state.isPaused && !loopPending
+            && (finishedAtEnd || resetAfterEnd)) {
+          loopPending = true;
+          loopArmed = false;
+          lastPlayingPosition = 0;
+          try {
+            embed.restart(); // Spotify iFrame API restarts from 00:00.
+            embed.play();
+          } catch (_) {
+            syncButton(false); // Spotify/browser policy may require the Play button.
+          }
+        }
+        if (!state.isPaused && position > 1000) loopPending = false;
       });
     });
   };
@@ -74,6 +105,7 @@
   button.addEventListener('click', () => {
     if (playing && controller) {
       requestedPlay = false;
+      loopArmed = false;
       try { controller.pause(); } catch (_) { syncButton(false); }
     } else {
       play();
