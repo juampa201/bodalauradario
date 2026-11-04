@@ -1,107 +1,201 @@
 (() => {
   'use strict';
-  // Spotify owns the audio stream; never bypass its player or browser autoplay policy.
+
+  // The supplied, locally hosted recording takes priority over Spotify.
+  // On the first play: begin at 00:10 and fade in over 3 seconds.
+  // After the track ends, the native audio loop restarts at 00:00 at normal volume.
+  const INITIAL_OFFSET = 10;
+  const FADE_DURATION_MS = 3000;
+  const MAX_VOLUME = 0.35;
   const TRACK_URI = 'spotify:track:1HNkqx9Ahdgi1Ixy2xkKkL';
-  const START_SECONDS = 0;
+
   const seal = document.querySelector('.seal');
-  const section = document.querySelector('.spotify-section');
-  const host = document.querySelector('#spotify-embed');
+  const spotifySection = document.querySelector('.spotify-section');
+  const spotifyHost = document.querySelector('#spotify-embed');
   const button = document.querySelector('.music-toggle');
-  if (!seal || !section || !host || !button) return;
+  const audio = document.querySelector('#wedding-music');
+  if (!seal || !button || !spotifySection || !spotifyHost) return;
+
+  let opened = false;
+  let requestedPlay = false;
+  let mode = null;
+  let localFailed = !audio;
+  let initialSeekDone = false;
+  let fadeElapsed = 0;
+  let fadeLastTick = 0;
+  let fadeFrame = 0;
 
   let controller = null;
-  let ready = false;
-  let requestedPlay = false;
-  let playing = false;
-  let prepared = false;
-  let loopArmed = false;
-  let loopPending = false;
-  let lastPlayingPosition = 0;
+  let spotifyReady = false;
+  let spotifyPlaying = false;
+  let spotifyLoopArmed = false;
+  let spotifyLoopPending = false;
+  let lastSpotifyPosition = 0;
 
   function syncButton(isPlaying) {
-    playing = isPlaying;
     button.setAttribute('aria-pressed', String(isPlaying));
-    button.setAttribute('aria-label', isPlaying ? 'Pausar Photograph de Ed Sheeran' : 'Reproducir Photograph de Ed Sheeran');
+    button.setAttribute('aria-label', isPlaying
+      ? 'Pausar Photograph de Ed Sheeran'
+      : 'Reproducir Photograph de Ed Sheeran');
     button.firstChild.textContent = isPlaying ? 'Pausar música ' : 'Escuchar música ';
   }
 
-  function play() {
-    requestedPlay = true;
-    if (!ready || !controller) return;
+  function seekFirstPlay() {
+    if (!audio || initialSeekDone || audio.readyState < HTMLMediaElement.HAVE_METADATA) return;
     try {
-      const action = controller.play();
-      if (action && typeof action.catch === 'function') {
-        action.catch(() => syncButton(false));
-      }
+      audio.currentTime = Math.min(INITIAL_OFFSET, Math.max(0, audio.duration - 0.25));
+      initialSeekDone = true;
+    } catch (_) {
+      // Re-attempt on loadedmetadata if the browser cannot seek yet.
+    }
+  }
+
+  function stopFade() {
+    if (fadeFrame) cancelAnimationFrame(fadeFrame);
+    fadeFrame = 0;
+    fadeLastTick = 0;
+  }
+
+  function fadeTick(now) {
+    if (!audio || mode !== 'local' || audio.paused) {
+      stopFade();
+      return;
+    }
+    if (fadeLastTick) fadeElapsed += Math.min(250, now - fadeLastTick);
+    fadeLastTick = now;
+    audio.volume = MAX_VOLUME * Math.min(1, fadeElapsed / FADE_DURATION_MS);
+    if (fadeElapsed < FADE_DURATION_MS) {
+      fadeFrame = requestAnimationFrame(fadeTick);
+    } else {
+      audio.volume = MAX_VOLUME;
+      fadeFrame = 0;
+      fadeLastTick = 0;
+    }
+  }
+
+  function startFade() {
+    if (fadeElapsed >= FADE_DURATION_MS || fadeFrame) return;
+    fadeLastTick = 0;
+    fadeFrame = requestAnimationFrame(fadeTick);
+  }
+
+  function playSpotify() {
+    if (!spotifyReady || !controller) return;
+    try {
+      const result = controller.play();
+      if (result && typeof result.catch === 'function') result.catch(() => syncButton(false));
     } catch (_) {
       syncButton(false);
     }
   }
 
-  // The callback is registered before Spotify's deferred iframe API script runs.
+  function useSpotifyFallback() {
+    mode = 'spotify';
+    spotifySection.hidden = false;
+    if (requestedPlay) playSpotify();
+  }
+
+  function playLocal() {
+    mode = 'local';
+    seekFirstPlay();
+    const result = audio.play(); // Must run synchronously inside the seal/button gesture.
+    if (result && typeof result.catch === 'function') {
+      result.catch((error) => {
+        if (mode !== 'local') return;
+        if (error && error.name === 'NotAllowedError') {
+          syncButton(false); // The next direct button click can retry audio.
+        } else {
+          localFailed = true;
+          useSpotifyFallback();
+        }
+      });
+    }
+  }
+
+  function requestPlayback() {
+    requestedPlay = true;
+    if (localFailed) {
+      useSpotifyFallback();
+    } else {
+      playLocal();
+    }
+  }
+
+  if (audio) {
+    audio.loop = true;
+    audio.volume = 0;
+    audio.addEventListener('loadedmetadata', seekFirstPlay);
+    audio.addEventListener('playing', () => {
+      mode = 'local';
+      spotifySection.hidden = true;
+      syncButton(true);
+      startFade();
+    });
+    audio.addEventListener('pause', () => {
+      stopFade();
+      if (mode === 'local') syncButton(false);
+    });
+    audio.addEventListener('error', () => {
+      localFailed = true;
+      if (opened && requestedPlay && mode !== 'spotify') useSpotifyFallback();
+    });
+  }
+
+  // Keep the original Spotify player as an explicit fallback until the
+  // licensed local MP3 is uploaded to assets/audio/photograph.mp3.
   window.onSpotifyIframeApiReady = (api) => {
-    api.createController(host, { uri: TRACK_URI, width: '100%', height: 152 }, (embed) => {
+    api.createController(spotifyHost, { uri: TRACK_URI, width: '100%', height: 152 }, (embed) => {
       controller = embed;
       embed.addListener('ready', () => {
-        ready = true;
-        if (!prepared) {
-          prepared = true;
-          // Explicitly start the track at 00:00.
-          embed.loadEntity(TRACK_URI, false, START_SECONDS);
-        }
-        if (requestedPlay) play();
+        spotifyReady = true;
+        if (requestedPlay && mode === 'spotify') playSpotify();
       });
       embed.addListener('playback_update', (event) => {
-        if (!event || !event.data) return;
+        if (!event || !event.data || mode !== 'spotify') return;
         const state = event.data;
         const position = Number(state.position);
         const duration = Number(state.duration);
-        syncButton(!state.isPaused);
-
-        if (!state.isPaused && position > 1000) {
-          loopArmed = true;
-          lastPlayingPosition = position;
+        spotifyPlaying = !state.isPaused;
+        syncButton(spotifyPlaying);
+        if (spotifyPlaying && position > 1000) {
+          spotifyLoopArmed = true;
+          lastSpotifyPosition = position;
+          spotifyLoopPending = false;
         }
-
-        // Spotify has no dedicated "ended" event. Detect completion via its
-        // playback position and restart from the beginning.
-        const finishedAtEnd = Number.isFinite(duration) && duration > 0
-          && Number.isFinite(position) && position >= duration - 1200;
-        const resetAfterEnd = state.isPaused && duration > 0 && position < 1500
-          && lastPlayingPosition >= duration - 2000;
-        if (requestedPlay && loopArmed && state.isPaused && !loopPending
-            && (finishedAtEnd || resetAfterEnd)) {
-          loopPending = true;
-          loopArmed = false;
-          lastPlayingPosition = 0;
+        const atEnd = duration > 0 && position >= duration - 1200;
+        const resetAfterEnd = state.isPaused && position < 1500
+          && lastSpotifyPosition >= duration - 2000;
+        if (requestedPlay && spotifyLoopArmed && state.isPaused
+            && !spotifyLoopPending && (atEnd || resetAfterEnd)) {
+          spotifyLoopPending = true;
+          spotifyLoopArmed = false;
+          lastSpotifyPosition = 0;
           try {
-            embed.restart(); // Spotify iFrame API restarts from 00:00.
+            embed.restart();
             embed.play();
           } catch (_) {
-            syncButton(false); // Spotify/browser policy may require the Play button.
+            syncButton(false);
           }
         }
-        if (!state.isPaused && position > 1000) loopPending = false;
       });
     });
   };
 
-  // Clicking the envelope seal is a direct user gesture on desktop and mobile.
   seal.addEventListener('click', () => {
-    section.hidden = false;
+    opened = true;
     button.hidden = false;
-    play();
+    requestPlayback();
   }, { once: true });
 
-  // If the browser blocks the programmatic playback, this explicit button and
-  // Spotify's own visible Play button at the bottom remain available.
   button.addEventListener('click', () => {
-    if (playing && controller) {
+    if (mode === 'local' && audio && !audio.paused) {
       requestedPlay = false;
-      loopArmed = false;
+      audio.pause();
+    } else if (mode === 'spotify' && spotifyPlaying && controller) {
+      requestedPlay = false;
       try { controller.pause(); } catch (_) { syncButton(false); }
     } else {
-      play();
+      requestPlayback();
     }
   });
 })();
