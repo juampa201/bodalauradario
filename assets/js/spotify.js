@@ -2,7 +2,7 @@
   'use strict';
   // Spotify owns the audio stream; never bypass its player or browser autoplay policy.
   const TRACK_URI = 'spotify:track:1HNkqx9Ahdgi1Ixy2xkKkL';
-  const START_SECONDS = 14;
+  const START_SECONDS = 0;
   const seal = document.querySelector('.seal');
   const section = document.querySelector('.spotify-section');
   const host = document.querySelector('#spotify-embed');
@@ -14,7 +14,6 @@
   let requestedPlay = false;
   let playing = false;
   let prepared = false;
-  let sought = false;
   let loopArmed = false;
   let loopPending = false;
   let lastPlayingPosition = 0;
@@ -47,7 +46,7 @@
         ready = true;
         if (!prepared) {
           prepared = true;
-          // The documented startAt parameter asks Spotify to start at 00:14.
+          // Explicitly start the track at 00:00.
           embed.loadEntity(TRACK_URI, false, START_SECONDS);
         }
         if (requestedPlay) play();
@@ -59,19 +58,13 @@
         const duration = Number(state.duration);
         syncButton(!state.isPaused);
 
-        // Only the very first playback begins at 00:14. Replays must start at 00:00.
-        if (!sought && !state.isPaused && position < 10000) {
-          sought = true;
-          try { embed.seek(START_SECONDS); } catch (_) { /* Unsupported by this client. */ }
-        }
-
-        if (!state.isPaused && position > 14000) {
+        if (!state.isPaused && position > 1000) {
           loopArmed = true;
           lastPlayingPosition = position;
         }
 
         // Spotify has no dedicated "ended" event. Detect completion via its
-        // playback position and restart (not loadEntity(startAt=14)).
+        // playback position and restart from the beginning.
         const finishedAtEnd = Number.isFinite(duration) && duration > 0
           && Number.isFinite(position) && position >= duration - 1200;
         const resetAfterEnd = state.isPaused && duration > 0 && position < 1500
