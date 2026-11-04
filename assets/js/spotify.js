@@ -24,6 +24,8 @@
   let fadeElapsed = 0;
   let fadeLastTick = 0;
   let fadeFrame = 0;
+  let audioContext = null;
+  let audioGain = null;
 
   let controller = null;
   let spotifyReady = false;
@@ -40,6 +42,27 @@
     button.firstChild.textContent = isPlaying ? 'Pausar música ' : 'Escuchar música ';
   }
 
+  // iOS Safari ignores HTMLAudioElement.volume, so use a Web Audio gain
+  // for the 3-second fade. Create/resume the graph inside the user gesture.
+  function prepareWebAudio() {
+    if (!audio || audioGain) return;
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) return;
+    try {
+      const context = new AudioContextClass();
+      const source = context.createMediaElementSource(audio);
+      const gain = context.createGain();
+      gain.gain.setValueAtTime(0, context.currentTime);
+      source.connect(gain);
+      gain.connect(context.destination);
+      audioContext = context;
+      audioGain = gain;
+      audio.volume = 1; // Web Audio owns the output level from now on.
+    } catch (_) {
+      // Fallback to volume control where supported.
+    }
+  }
+
   function seekFirstPlay() {
     if (!audio || initialSeekDone || audio.readyState < HTMLMediaElement.HAVE_METADATA) return;
     try {
@@ -54,6 +77,17 @@
     if (fadeFrame) cancelAnimationFrame(fadeFrame);
     fadeFrame = 0;
     fadeLastTick = 0;
+    if (audioGain && audioContext) {
+      const now = audioContext.currentTime;
+      const gain = audioGain.gain;
+      if (typeof gain.cancelAndHoldAtTime === 'function') {
+        gain.cancelAndHoldAtTime(now);
+      } else {
+        const level = gain.value;
+        gain.cancelScheduledValues(now);
+        gain.setValueAtTime(level, now);
+      }
+    }
   }
 
   function fadeTick(now) {
@@ -74,6 +108,20 @@
   }
 
   function startFade() {
+    if (audioGain && audioContext) {
+      const now = audioContext.currentTime;
+      const gain = audioGain.gain;
+      const level = Math.max(0, Math.min(MAX_VOLUME, gain.value));
+      if (level >= MAX_VOLUME - 0.001) return;
+      gain.cancelScheduledValues(now);
+      gain.setValueAtTime(level, now);
+      gain.linearRampToValueAtTime(
+        MAX_VOLUME,
+        now + (FADE_DURATION_MS / 1000) * (1 - level / MAX_VOLUME)
+      );
+      return;
+    }
+    // Desktop/older-browser fallback using HTMLAudioElement.volume.
     if (fadeElapsed >= FADE_DURATION_MS || fadeFrame) return;
     fadeLastTick = 0;
     fadeFrame = requestAnimationFrame(fadeTick);
@@ -97,6 +145,11 @@
 
   function playLocal() {
     mode = 'local';
+    prepareWebAudio();
+    if (audioContext && audioContext.state !== 'running') {
+      const resumed = audioContext.resume();
+      if (resumed && typeof resumed.catch === 'function') resumed.catch(() => syncButton(false));
+    }
     seekFirstPlay();
     const result = audio.play(); // Must run synchronously inside the seal/button gesture.
     if (result && typeof result.catch === 'function') {
@@ -141,8 +194,7 @@
     });
   }
 
-  // Keep the original Spotify player as an explicit fallback until the
-  // licensed local MP3 is uploaded to assets/audio/photograph.mp3.
+  // Keep Spotify as a fallback only if the uploaded local MP3 fails to load.
   window.onSpotifyIframeApiReady = (api) => {
     api.createController(spotifyHost, { uri: TRACK_URI, width: '100%', height: 152 }, (embed) => {
       controller = embed;

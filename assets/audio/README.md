@@ -1,9 +1,9 @@
-# Audio para la invitación
+# Música de la invitación
 
-Colocar aquí el archivo **photograph.mp3** (la grabación original completa facilitada para la invitación).
+El archivo subido es **Ed Sheeran - Photograph (Official Music Video).mp3**.
 
-Al pulsar el sello, la web comienza en el segundo **00:10** y aumenta progresivamente el volumen durante los siguientes **3 segundos**. Una vez termina, el audio se repite desde el segundo **00:00** de la grabación original, sin repetir el fade-in.
+La web reproduce este MP3 local al pulsar el sello: comienza a **00:10**, aplica un **fundido de entrada de 3 segundos** (mediante Web Audio también en iOS Safari) y, cuando termina, repite desde **00:00**, sin repetir el fundido.
 
-Mientras el archivo no esté en este directorio, se mantiene Spotify como alternativa (con sus restricciones habituales de reproducción y vista previa).
+El reproductor de Spotify se mantiene únicamente como alternativa si el archivo no está disponible o no puede reproducirse.
 
-Antes de distribuir públicamente el audio, asegurarse de tener los derechos o autorización necesarios para su uso y alojamiento en la web.
+La publicación de música comercial requiere los derechos o las autorizaciones correspondientes.
