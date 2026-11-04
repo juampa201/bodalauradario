@@ -58,7 +58,7 @@
 
 /* Visible directions beneath the watercolor monastery illustration. */
 .monastery-maps { margin: 10px 0 0; text-align: center; }
-.monastery-maps a { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border: 1px solid #97735a55; border-radius: 999px; background: var(--color-background); color: var(--color-ink); text-decoration: none; font: 400 14px/1.5 Georgia, 'Times New Roman', serif; box-shadow: none; transition: background .2s, border-color .2s; }
-.monastery-maps a:hover, .monastery-maps a:focus-visible { background: var(--color-background); border-color: #97735aaa; color: var(--color-ink); }
+.monastery-maps a { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border: 1px solid #97735a55; border-radius: 999px; background: transparent; color: var(--color-ink); text-decoration: none; font: 400 14px/1.5 Georgia, 'Times New Roman', serif; box-shadow: none; transition: border-color .2s; }
+.monastery-maps a:hover, .monastery-maps a:focus-visible { background: transparent; border-color: #97735aaa; color: var(--color-ink); }
 .monastery-maps + .countdown-heading { margin-top: 35px; }
 @media (max-width: 600px) { .monastery-maps { margin-top: 8px; } .monastery-maps + .countdown-heading { margin-top: 30px; } }
