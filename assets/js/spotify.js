@@ -2,9 +2,9 @@
   'use strict';
 
   // The supplied, locally hosted recording takes priority over Spotify.
-  // On the first play: begin at 00:10 and fade in over 3 seconds.
+  // On the first play: begin at 00:15 and fade in over 3 seconds.
   // After the track ends, the native audio loop restarts at 00:00 at normal volume.
-  const INITIAL_OFFSET = 10;
+  const INITIAL_OFFSET = 15;
   const FADE_DURATION_MS = 3000;
   const MAX_VOLUME = 0.35;
   const TRACK_URI = 'spotify:track:1HNkqx9Ahdgi1Ixy2xkKkL';
