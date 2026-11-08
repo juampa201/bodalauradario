@@ -19,3 +19,9 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--color-accent); 
 .music-toggle { position: fixed; right: 18px; bottom: 18px; z-index: 20; border: 1px solid #a45b3e50; border-radius: 30px; padding: 12px 18px; background: #fffaf0ed; color: var(--color-ink); font: 11px Georgia, serif; cursor: pointer; box-shadow: 0 3px 18px #53392f12; }
 .music-toggle span { margin-left: 6px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* Leave room beneath the final section and the floating music control. */
+body:not(.is-locked) main { padding-bottom: 96px; }
+@media (max-width: 700px) {
+  body:not(.is-locked) main { padding-bottom: 48px; }
+}
