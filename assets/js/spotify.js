@@ -42,10 +42,15 @@
     button.firstChild.textContent = isPlaying ? 'Pausar música ' : 'Escuchar música ';
   }
 
+  // Use native media playback on desktop/Android to avoid a suspended Web Audio
+  // context silencing otherwise-playing media in Chrome.
+  const needsWebAudio = /iPad|iPhone|iPod/.test(navigator.userAgent)
+    || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
   // iOS Safari ignores HTMLAudioElement.volume, so use a Web Audio gain
   // for the 3-second fade. Create/resume the graph inside the user gesture.
   function prepareWebAudio() {
-    if (!audio || audioGain) return;
+    if (!audio || audioGain || !needsWebAudio) return;
     const AudioContextClass = window.AudioContext || window.webkitAudioContext;
     if (!AudioContextClass) return;
     try {
@@ -152,8 +157,13 @@
     }
     seekFirstPlay();
     const result = audio.play(); // Must run synchronously inside the seal/button gesture.
-    if (result && typeof result.catch === 'function') {
-      result.catch((error) => {
+    if (result && typeof result.then === 'function') {
+      result.then(() => {
+        if (mode === 'local' && !audio.paused) {
+          syncButton(true);
+          startFade();
+        }
+      }).catch((error) => {
         if (mode !== 'local') return;
         if (error && error.name === 'NotAllowedError') {
           syncButton(false); // The next direct button click can retry audio.
